@@ -13,30 +13,48 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #050505;
+            background-color: #05040a;
             color: #ffffff;
         }
 
-        /* 🌌 LIVE WALLPAPER GIF (Otomatis Berputar Tanpa Klik Pertama) */
-        .live-wallpaper {
+        /* 🌌 BACKGROUND ANIMASI KABUT NEON RED-EYE (100% Work Anti Layar Hitam) */
+        .animated-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             z-index: -2;
-            object-fit: cover; /* Memaksa animasi menutup seluruh layar laptop */
-            background-position: center;
+            background: radial-gradient(circle at 50% 50%, #1a0808, #050508);
+            overflow: hidden;
+        }
+        /* Efek sorot mata merah menyala abstrak yang bergerak otomatis */
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                radial-gradient(circle at 30% 40%, rgba(255, 0, 0, 0.25) 0%, transparent 35%),
+                radial-gradient(circle at 70% 40%, rgba(255, 0, 0, 0.25) 0%, transparent 35%),
+                radial-gradient(circle at 50% 70%, rgba(99, 102, 241, 0.15) 0%, transparent 45%);
+            animation: pulseGlow 8s infinite alternate ease-in-out;
+        }
+        @keyframes pulseGlow {
+            0% { transform: translate(0, 0) scale(1); filter: blur(5px); }
+            100% { transform: translate(2%, 3%) scale(1.08); filter: blur(0px); }
         }
 
-        /* Lapisan Gelap Di Atas Wallpaper Biar Tulisan Menu Jelas */
+        /* Lapisan Gelap Penyeimbang Bayangan */
         .video-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7); /* Menggelapkan latar belakang */
+            background: rgba(0, 0, 0, 0.4);
             z-index: -1;
         }
 
@@ -51,18 +69,18 @@
             padding: 15px;
         }
 
-        /* 🔮 UI GLASSMORPHISM TRANSPARAN (Efek Kaca Tembus Pandang) */
+        /* 🔮 UI GLASSMORPHISM TRANSPARAN (Efek Kaca Tembus Pandang Nyata) */
         .container {
             max-width: 600px;
             width: 100%;
-            max-height: 90vh;
+            max-height: 85vh;
             padding: 25px;
-            background: rgba(15, 15, 25, 0.55); /* Efek transparan */
-            backdrop-filter: blur(15px); /* Membuat efek blur di dalam kotak */
-            -webkit-backdrop-filter: blur(15px);
+            background: rgba(18, 18, 28, 0.55); /* Transparan */
+            backdrop-filter: blur(16px); /* Efek Kaca Blur */
+            -webkit-backdrop-filter: blur(16px);
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 69, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.12); /* Kilau Tepi Kaca */
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -75,11 +93,11 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: 900;
-            text-shadow: 0 0 12px rgba(255, 69, 0, 0.5);
+            text-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
         }
         .subtitle {
             font-size: 0.9rem;
-            color: #b3b3b3;
+            color: #cccccc;
             margin-bottom: 20px;
         }
         
@@ -87,7 +105,7 @@
         .search-box {
             width: 100%;
             padding: 12px 16px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             color: white;
@@ -99,7 +117,7 @@
         }
         .search-box:focus {
             border-color: #ff4500;
-            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
         }
 
         /* Menu Filter Kategori */
@@ -145,11 +163,11 @@
 
         /* Kartu Item */
         .item-card {
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(5, 5, 5, 0.6);
             margin-bottom: 12px;
             padding: 15px;
             border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             border-left: 4px solid #fff;
             box-sizing: border-box;
         }
@@ -185,7 +203,7 @@
             font-size: 0.8rem;
             color: #94a3b8;
             margin-bottom: 10px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             padding: 6px 10px;
             border-radius: 6px;
         }
@@ -196,9 +214,9 @@
 
         /* Tombol */
         .action-btn {
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.06);
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 10px;
             font-size: 0.8rem;
             border-radius: 8px;
@@ -215,7 +233,7 @@
         }
         .btn-buy {
             background: rgba(21, 128, 61, 0.7);
-            border-color: rgba(34, 197, 94, 0.3);
+            border-color: rgba(34, 197, 94, 0.2);
         }
         .btn-buy:hover {
             background: #22c55e;
@@ -225,9 +243,8 @@
 </head>
 <body>
 
-    <!-- 🌌 LIVE BACKGROUND WALLPAPER (100% Otomatis Bergerak Menggunakan File Gambar Animasi) -->
-    <img class="live-wallpaper" src="https://tenor.com" alt="Anime Red Eyes Live Wallpaper">
-    
+    <!-- 🌌 LIVE WALLPAPER CSS MURNI -->
+    <div class="animated-bg"></div>
     <div class="video-overlay"></div>
 
     <!-- Area Tengah Konten -->
