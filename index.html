@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 🛡️ KODE PELINDUNG: Mencegah Injeksi Iklan Otomatis & Pop-up Nakal -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://tenor.com https://discord.com https://getwave.gg https://bloxproducts.com https://potassium.pro https://cheatsmarket.com https://voltbz.net https://synapse.do https://robloxcheatz.com https://getmadium.net https://getsolara.dev https://xeno.now; connect-src 'self';">
+    <!-- 🛡️ KODE PELINDUNG ANTI-IKLAN -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://tenor.com https://discord.com https://getwave.gg https://bloxproducts.com https://potassium.pro https://cheatsmarket.com https://voltbz.net https://synapse.do https://robloxcheatz.com https://getmadium.net https://getsolara.dev https://xeno.now https://google.com https://roblox.com; connect-src 'self';">
     <title>Exploit Tools - Script Hub</title>
     <style>
-        /* Mengunci background utama agar tetap di tempat saat di-scroll */
+        /* Mengunci background utama */
         html, body {
             margin: 0;
             padding: 0;
@@ -18,33 +18,18 @@
             background-color: #06030c;
         }
 
-        /* 🌌 LIVE WALLPAPER ELEMEN */
-        .live-wallpaper-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -3;
-            object-fit: cover;
-            pointer-events: none;
+        /* 🌌 BACKGROUND GRADASI CYAN-PURPLE */
+        body {
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(6, 182, 212, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.28) 0%, transparent 55%);
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
 
-        /* 🎨 LAPISAN GRADASI WARNA CYAN-PURPLE */
-        .color-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 0% 0%, rgba(6, 182, 212, 0.25) 0%, transparent 50%),
-                        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.28) 0%, transparent 55%),
-                        rgba(6, 3, 12, 0.55);
-            z-index: -2;
-            pointer-events: none;
-        }
-
-        /* Lapisan Grid Garis-Garis Kisi Cyberpunk */
+        /* Lapisan Grid Garis Kisi Cyberpunk */
         .grid-overlay {
             position: fixed;
             top: 0;
@@ -60,35 +45,79 @@
             pointer-events: none;
         }
 
-        /* 🔮 WRAPPER KONTEN */
-        .wrapper {
-            max-width: 600px;
+        /* 🎥 LIVE WALLPAPER ANIMASI MATRIKS */
+        .live-wallpaper-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -3;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        .color-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 3, 12, 0.55);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* 🔮 WRAPPER KONTEN UTAMA (Sistem Grid Samping Konten) */
+        .main-wrapper {
+            max-width: 1000px; /* Diperlebar agar muat 2 kolom di laptop */
             width: 90%;
             margin: 0 auto;
             padding: 50px 0;
-            text-align: center;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr; /* Kolom kiri lebih besar untuk script, kanan untuk status */
+            gap: 30px; /* Jarak antara menu utama dan kotak samping */
             box-sizing: border-box;
         }
 
-        h1 {
+        /* BAGIAN HEADER (Judul Web) memenuhi bagian atas */
+        .web-header {
+            grid-column: span 2; /* Judul membentang penuh di atas */
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .web-header h1 {
             background: linear-gradient(45deg, #06b6d4, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             margin: 0 0 8px 0;
             text-transform: uppercase;
             letter-spacing: 4px;
             font-weight: 900;
             filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.3));
         }
-        .subtitle {
+        .web-header .subtitle {
             font-size: 0.95rem;
             color: #cbd5e1;
-            margin-bottom: 30px;
             letter-spacing: 0.5px;
         }
+
+        /* AREA UTAMA SEBELAH KIRI (Script Hub) */
+        .left-panel {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* AREA BARU SEBELAH KANAN (Roblox Live Status Samping) */
+        .right-panel {
+            width: 100%;
+            position: sticky; /* Membuat kotak status tetap diam saat di-scroll ke bawah */
+            top: 40px; 
+            align-self: start;
+        }
         
-        /* Search Bar Mengambang */
+        /* Search Bar */
         .search-box {
             width: 100%;
             padding: 14px 18px;
@@ -122,14 +151,13 @@
             background: rgba(255, 255, 255, 0.03);
             color: #cccccc;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 10px 20px;
+            padding: 10px 18px;
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
             font-size: 0.85rem;
             transition: 0.2s ease;
             backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
         }
         .filter-btn.active, .filter-btn:hover {
             background: linear-gradient(45deg, #06b6d4, #a855f7);
@@ -139,13 +167,12 @@
             transform: translateY(-1px);
         }
 
-        /* Daftar Konten */
         .content-list {
             text-align: left;
             width: 100%;
         }
 
-        /* Kartu Item Mengambang Halus */
+        /* Desain Kartu Item (Berlaku untuk Script dan Status Samping) */
         .item-card {
             background: rgba(15, 15, 25, 0.45); 
             backdrop-filter: blur(10px);
@@ -159,15 +186,22 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: 0.3s ease;
         }
+        .item-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
         .item-card.script-roblox { border-left-color: #ff4500; }
         .item-card.executor { border-left-color: #06b6d4; }
         .item-card.exec-win { border-left-color: #6366f1; }
+        .item-card.status-box { border-left-color: #ef4444; background: rgba(239, 68, 68, 0.02); }
 
         .item-card h3 { margin: 0 0 6px 0; font-size: 1.2rem; color: #ffffff; letter-spacing: 0.5px; }
         .tag { display: inline-block; font-size: 0.65rem; padding: 4px 10px; border-radius: 6px; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
         .tag-script { background: rgba(255, 69, 0, 0.12); color: #ff4500; }
         .tag-exec { background: rgba(6, 182, 212, 0.12); color: #06b6d4; }
         .tag-win { background: rgba(99, 102, 241, 0.12); color: #818cf8; }
+        .tag-status { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
 
         .status-info { font-size: 0.75rem; margin-bottom: 6px; font-style: italic; font-weight: bold; }
         .price-info { font-size: 0.8rem; color: #cbd5e1; margin-bottom: 12px; background: rgba(0, 0, 0, 0.4); padding: 8px 12px; border-radius: 8px; border-left: 3px solid #6366f1; line-height: 1.4; }
@@ -194,172 +228,196 @@
         .action-btn:hover { background: #ffffff; color: #000000; border-color: #ffffff; box-shadow: 0 4px 12px rgba(255,255,255,0.2); }
         .btn-buy { background: rgba(21, 128, 61, 0.55); border-color: rgba(34, 197, 94, 0.2); }
         .btn-buy:hover { background: #22c55e; color: white; border-color: #22c55e; box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4); }
+
+        /* RESPONSIVE LAYOUT UNTUK LAYAR HP (Otomatis baris ke bawah sebaris jika dibuka di HP) */
+        @media (max-width: 800px) {
+            .main-wrapper { grid-template-columns: 1fr; gap: 20px; }
+            .web-header { grid-column: span 1; }
+            .right-panel { position: static; }
+        }
     </style>
 </head>
 <body>
 
     <!-- LIVE WALLPAPER ANIMASI MATRIKS NEON -->
     <img class="live-wallpaper-bg" src="https://tenor.com/On7byg8v6m8AAAAd/cyberpunk-city.gif" alt="Cyberpunk Neon Live Wallpaper">
-
-    <!-- Lapisan Warna Gradasi & Garis Grid Cyberpunk -->
     <div class="color-overlay"></div>
     <div class="grid-overlay"></div>
 
-    <!-- Konten Utama -->
-    <div class="wrapper">
-        <h1>EXPLOIT TOOLS</h1>
-        <div class="subtitle">Koleksi premium script dan executor game Roblox terbaik.</div>
+    <!-- 🔮 STRUKTUR UTAMA GRID INDUK -->
+    <div class="main-wrapper">
         
-        <!-- Kolom Pencarian -->
-        <input type="text" id="searchBar" class="search-box" placeholder="Cari script atau executor..." onkeyup="filterSearch()">
+        <!-- 1. BAGIAN JUDUL ATAS -->
+        <div class="web-header">
+            <h1>EXPLOIT TOOLS</h1>
+            <div class="subtitle">Koleksi premium script dan executor game Roblox terbaik.</div>
+        </div>
         
-        <div class="filter-menu">
-            <button class="filter-btn active" onclick="filterKategori('all', this)">Semua</button>
-            <button class="filter-btn" onclick="filterKategori('script-roblox', this)">Script Roblox</button>
-            <button class="filter-btn" onclick="filterKategori('executor', this)">Executor Mobile</button>
-            <button class="filter-btn" onclick="filterKategori('exec-win', this)">Executor Windows</button>
+        <!-- 2. PANEL KIRI (Tempat Fitur Utama Search & Daftar Script) -->
+        <div class="left-panel">
+            <input type="text" id="searchBar" class="search-box" placeholder="Cari script atau executor..." onkeyup="filterSearch()">
+            
+            <div class="filter-menu">
+                <button class="filter-btn active" onclick="filterKategori('all', this)">Semua</button>
+                <button class="filter-btn" onclick="filterKategori('script-roblox', this)">Script Roblox</button>
+                <button class="filter-btn" onclick="filterKategori('executor', this)">Executor Mobile</button>
+                <button class="filter-btn" onclick="filterKategori('exec-win', this)">Executor Windows</button>
+            </div>
+
+            <div class="content-list">
+                <!-- Item 1: Blox Fruit -->
+                <div class="item-card script-roblox">
+                    <span class="tag tag-script">SCRIPT ROBLOX</span>
+                    <h3>BLOX FRUIT 🟣</h3>
+                    <div class="status-info status-unknown">🟣 NOT WORKING AND UNKNOWN PROBLEM</div>
+                    <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://githubusercontent.com\'))()')">Salin Script</button>
+                </div>
+                
+                <!-- Item 2: Aimbot + ESP -->
+                <div class="item-card script-roblox">
+                    <span class="tag tag-script">SCRIPT ROBLOX</span>
+                    <h3>AIMBOT + ESP 🟡</h3>
+                    <div class="status-info status-bug">🟡 WORKING BUT HAVE A BUG</div>
+                    <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
+                </div>
+                
+                <!-- Item 3: Aimbot + ESP Underground Style -->
+                <div class="item-card script-roblox">
+                    <span class="tag tag-script">SCRIPT ROBLOX</span>
+                    <h3>AIMBOT + ESP UNDERGROUND STYLE 🟢</h3>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
+                </div>
+
+                <!-- Item 4: Codex Executor Mobile -->
+                <div class="item-card executor">
+                    <span class="tag tag-exec">EXECUTOR MOBILE</span>
+                    <h3>Codex Executor V2 🔴</h3>
+                    <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
+                    <button class="action-btn" onclick="window.open('https://codex.lol', '_blank', 'noopener,noreferrer')">Unduh Executor</button>
+                </div>
+
+                <!-- Item 5: Delta Executor Mobile -->
+                <div class="item-card executor">
+                    <span class="tag tag-exec">EXECUTOR MOBILE</span>
+                    <h3>Delta Executor Mobile</h3>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <button class="action-btn" onclick="window.open('https://deltaexploits.gg', '_blank', 'noopener,noreferrer')">Unduh Executor</button>
+                </div>
+
+                <!-- Item 6: Vega X Mobile -->
+                <div class="item-card executor">
+                    <span class="tag tag-exec">EXECUTOR MOBILE</span>
+                    <h3>Vega X Mobile</h3>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <button class="action-btn" onclick="window.open('https://vegax.gg', '_blank', 'noopener,noreferrer')">Unduh Executor</button>
+                </div>
+
+                <!-- Item 7: Wave Executor Windows -->
+                <div class="item-card exec-win">
+                    <span class="tag tag-win">EXECUTOR WINDOWS</span>
+                    <h3>Wave Executor Windows</h3>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <div class="price-info">💰 Harga: $5.99 USD / 7 Days | $18.99 USD / 30 Days</div>
+                    <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Wave</button>
+                    <button class="action-btn" onclick="window.open('https://getwave.gg', '_blank', 'noopener,noreferrer')">Unduh Wave (Official Site)</button>
+                    <button class="action-btn btn-buy" onclick="window.open('https://bloxproducts.com', '_blank', 'noopener,noreferrer')">🛒 Beli Premium Key (BloxProducts)</button>
+                </div>
+
+                <!-- Item 8: Potassium Executor Windows -->
+                <div class="item-card exec-win">
+                    <span class="tag tag-win">EXECUTOR WINDOWS</span>
+                    <h3>Potassium Executor Windows</h3>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <div class="price-info">💰 Harga: $22.99 USD / Lifetime Key</div>
+                    <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Potassium</button>
+                    <button class="action-btn" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">Unduh Potassium (Discord Official Site)</button>
+                    <button class="action-btn btn-buy" onclick="window.open('https://cheatsmarket.com', '_blank', 'noopener,noreferrer')">🛒 Beli Lifetime Key (CheatsMarket)</button>
+                </div>
+
+                <!-- Item 9: Volt Executor Windows -->
+                <div class="item-card exec-win">
+                    <span class="tag tag-win">EXECUTOR WINDOWS</span>
+                    <h3>Volt Executor Windows</h3>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <div class="price-info">💰 Harga:<br>• $5.99 USD - $9.99 USD / Weekly<br>• $19.99 USD / Monthly<br>• $49.99 USD / Quarterly</div>
+                    <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Volt</button>
+                    <button class="action-btn" onclick="window.open('https://voltbz.net', '_blank', 'noopener,noreferrer')">Unduh & Beli Volt (Official Site)</button>
+                </div>
+
+                <!-- Item 10: Synapse Z Windows -->
+                <div class="item-card exec-win">
+                    <span class="tag tag-win">EXECUTOR WINDOWS</span>
+                    <h3>Synapse Z Windows</h3>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <div class="price-info">💰 Harga: $3.99 USD / Weekly | $11.99 USD / Monthly</div>
+                    <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Synapse Z</button>
+                    <button class="action-btn" onclick="window.open('https://synapse.do', '_blank', 'noopener,noreferrer')">Unduh Synapse Z (Official Site)</button>
+                    <button class="action-btn btn-buy" onclick="window.open('https://robloxcheatz.com', '_blank', 'noopener,noreferrer')">🛒 Beli Premium Key (RobloxCheatz)</button>
+                </div>
+
+                <!-- Item 11: Madium Windows -->
+                <div class="item-card exec-win">
+                    <span class="tag tag-win">EXECUTOR WINDOWS</span>
+                    <h3>Madium Windows 🔴</h3>
+                    <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
+                    <div class="price-info">💰 Harga: FREE</div>
+                    <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Madium</button>
+                    <button class="action-btn" onclick="window.open('https://getmadium.net', '_blank', 'noopener,noreferrer')">Kunjungi Web Madium</button>
+                </div>
+
+                <!-- Item 12: Solara Windows -->
+                <div class="item-card exec-win">
+                    <span class="tag tag-win">EXECUTOR WINDOWS</span>
+                    <h3>Solara Windows 🔴</h3>
+                    <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
+                    <div class="price-info">💰 Harga: FREE</div>
+                    <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Solara</button>
+                    <button class="action-btn" onclick="window.open('https://getsolara.dev', '_blank', 'noopener,noreferrer')">Kunjungi Web Solara</button>
+                </div>
+
+                <!-- Item 13: Xeno Windows -->
+                <div class="item-card exec-win">
+                    <span class="tag tag-win">EXECUTOR WINDOWS</span>
+                    <h3>Xeno Windows 🔴</h3>
+                    <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
+                    <div class="price-info">💰 Harga: FREE</div>
+                    <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Xeno</button>
+                    <button class="action-btn" onclick="window.open('https://xeno.now/', '_blank', 'noopener,noreferrer')">Kunjungi Web Xeno</button>
+                </div>
+            </div>
         </div>
 
-        <div class="content-list">
-            <!-- Item 1: Blox Fruit -->
-            <div class="item-card script-roblox">
-                <span class="tag tag-script">SCRIPT ROBLOX</span>
-                <h3>BLOX FRUIT 🟣</h3>
-                <div class="status-info status-unknown">🟣 NOT WORKING AND UNKNOWN PROBLEM</div>
-                <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://githubusercontent.com\'))()')">Salin Script</button>
-            </div>
-            
-            <!-- Item 2: Aimbot + ESP -->
-            <div class="item-card script-roblox">
-                <span class="tag tag-script">SCRIPT ROBLOX</span>
-                <h3>AIMBOT + ESP 🟡</h3>
-                <div class="status-info status-bug">🟡 WORKING BUT HAVE A BUG</div>
-                <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
-            </div>
-            
-            <!-- Item 3: Aimbot + ESP Underground Style -->
-            <div class="item-card script-roblox">
-                <span class="tag tag-script">SCRIPT ROBLOX</span>
-                <h3>AIMBOT + ESP UNDERGROUND STYLE 🟢</h3>
-                <div class="status-info status-working">🟢 WORKING</div>
-                <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
-            </div>
-
-            <!-- Item 4: Codex Executor Mobile -->
-            <div class="item-card executor">
-                <span class="tag tag-exec">EXECUTOR MOBILE</span>
-                <h3>Codex Executor V2 🔴</h3>
-                <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
-                <button class="action-btn" onclick="window.open('https://codex.lol', '_blank', 'noopener,noreferrer')">Unduh Executor</button>
-            </div>
-
-            <!-- Item 5: Delta Executor Mobile -->
-            <div class="item-card executor">
-                <span class="tag tag-exec">EXECUTOR MOBILE</span>
-                <h3>Delta Executor Mobile</h3>
-                <div class="status-info status-working">🟢 WORKING</div>
-                <button class="action-btn" onclick="window.open('https://deltaexploits.gg', '_blank', 'noopener,noreferrer')">Unduh Executor</button>
-            </div>
-
-            <!-- Item 6: Vega X Mobile -->
-            <div class="item-card executor">
-                <span class="tag tag-exec">EXECUTOR MOBILE</span>
-                <h3>Vega X Mobile</h3>
-                <div class="status-info status-working">🟢 WORKING</div>
-                <button class="action-btn" onclick="window.open('https://vegax.gg', '_blank', 'noopener,noreferrer')">Unduh Executor</button>
-            </div>
-
-            <!-- Item 7: Wave Executor Windows -->
-            <div class="item-card exec-win">
-                <span class="tag tag-win">EXECUTOR WINDOWS</span>
-                <h3>Wave Executor Windows</h3>
-                <div class="status-info status-working">🟢 WORKING</div>
-                <div class="price-info">💰 Harga: $5.99 USD / 7 Days | $18.99 USD / 30 Days</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Wave</button>
-                <button class="action-btn" onclick="window.open('https://getwave.gg', '_blank', 'noopener,noreferrer')">Unduh Wave (Official Site)</button>
-                <button class="action-btn btn-buy" onclick="window.open('https://bloxproducts.com', '_blank', 'noopener,noreferrer')">🛒 Beli Premium Key (BloxProducts)</button>
-            </div>
-
-            <!-- Item 8: Potassium Executor Windows -->
-            <div class="item-card exec-win">
-                <span class="tag tag-win">EXECUTOR WINDOWS</span>
-                <h3>Potassium Executor Windows</h3>
-                <div class="status-info status-working">🟢 WORKING</div>
-                <div class="price-info">💰 Harga: $22.99 USD / Lifetime Key</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Potassium</button>
-                <button class="action-btn" onclick="window.open('https://www.potassium.pro/', '_blank', 'noopener,noreferrer')">Unduh Potassium ( Official Site)</button>
-                <button class="action-btn btn-buy" onclick="window.open('https://cheatsmarket.com', '_blank', 'noopener,noreferrer')">🛒 Beli Lifetime Key (CheatsMarket)</button>
-            </div>
-
-            <!-- Item 9: Volt Executor Windows -->
-            <div class="item-card exec-win">
-                <span class="tag tag-win">EXECUTOR WINDOWS</span>
-                <h3>Volt Executor Windows</h3>
-                <div class="status-info status-working">🟢 WORKING</div>
-                <div class="price-info">💰 Harga:<br>• $5.99 USD - $9.99 USD / Weekly<br>• $19.99 USD / Monthly<br>• $49.99 USD / Quarterly</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Volt</button>
-                <button class="action-btn" onclick="window.open('https://voltbz.net', '_blank', 'noopener,noreferrer')">Unduh & Beli Volt (Official Site)</button>
-            </div>
-
-            <!-- Item 10: Synapse Z Windows -->
-            <div class="item-card exec-win">
-                <span class="tag tag-win">EXECUTOR WINDOWS</span>
-                <h3>Synapse Z Windows</h3>
-                <div class="status-info status-working">🟢 WORKING</div>
-                <div class="price-info">💰 Harga: $3.99 USD / Weekly | $11.99 USD / Monthly</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Synapse Z</button>
-                <button class="action-btn" onclick="window.open('https://synapse.do', '_blank', 'noopener,noreferrer')">Unduh Synapse Z (Official Site)</button>
-                <button class="action-btn btn-buy" onclick="window.open('https://robloxcheatz.com', '_blank', 'noopener,noreferrer')">🛒 Beli Premium Key (RobloxCheatz)</button>
-            </div>
-
-            <!-- Item 11: Madium Windows -->
-            <div class="item-card exec-win">
-                <span class="tag tag-win">EXECUTOR WINDOWS</span>
-                <h3>Madium Windows 🔴</h3>
-                <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
-                <div class="price-info">💰 Harga: FREE</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Madium</button>
-                <button class="action-btn" onclick="window.open('https://getmadium.net', '_blank', 'noopener,noreferrer')">Kunjungi Web Madium</button>
-            </div>
-
-            <!-- Item 12: Solara Windows -->
-            <div class="item-card exec-win">
-                <span class="tag tag-win">EXECUTOR WINDOWS</span>
-                <h3>Solara Windows 🔴</h3>
-                <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
-                <div class="price-info">💰 Harga: FREE</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Solara</button>
-                <button class="action-btn" onclick="window.open('https://getsolara.dev', '_blank', 'noopener,noreferrer')">Kunjungi Web Solara</button>
-            </div>
-
-            <!-- Item 13: Xeno Windows -->
-            <div class="item-card exec-win">
-                <span class="tag tag-win">EXECUTOR WINDOWS</span>
-                <h3>Xeno Windows 🔴</h3>
-                <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
-                <div class="price-info">💰 Harga: FREE</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Xeno</button>
-                <button class="action-btn" onclick="window.open('https://xeno.now/', '_blank', 'noopener,noreferrer')">Kunjungi Web Xeno</button>
+        <!-- 3. PANEL KANAN (Ditempatkan di Samping Khusus Roblox Live Status) -->
+        <div class="right-panel">
+            <div class="item-card status-box">
+                <span class="tag tag-status">ROBLOX LIVE STATUS</span>
+                <h3>Roblox Version Tracker</h3>
+                <div style="font-size: 0.85rem; color: #94a3b8; font-style: normal; margin-bottom: 15px; line-height: 1.5; text-align: left;">
+                    ⚠️ Roblox mendeteksi update berkala setiap minggu. Gunakan tombol pelacak di bawah untuk memeriksa kecocokan versi client game kamu dengan server pusat.
+                </div>
+                
+                <button class="action-btn" style="border-color: #22c55e; color: #22c55e;" onclick="window.open('https://google.com/store/apps/details?id=com.roblox.client', '_blank', 'noopener,noreferrer')">
+                    🤖 Cek Versi Android (Play Store)
+                </button>
+                
+                <button class="action-btn" style="border-color: #06b6d4; color: #06b6d4;" onclick="window.open('https://roblox.com/', '_blank', 'noopener,noreferrer')">
+                    💻 Cek Live Status Server Roblox
+                </button>
             </div>
         </div>
+
     </div>
 
-    <!-- 🛠️ SISTEM JAVASCRIPT YANG SUDAH DIPERBAIKI -->
     <script>
-        /* 🟢 FITUR SEARCH REAL-TIME YANG SUDAH FIX (Bisa Diketik di HP/Laptop) */
         function filterSearch() {
             let input = document.getElementById('searchBar').value.toLowerCase();
             let cards = document.getElementsByClassName('item-card');
-            
             for (let i = 0; i < cards.length; i++) {
-                // Perbaikan fatal: Mengganti innerText menjadi textContent agar terbaca lancar
-                let title = cards[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
-                
-                if (title.includes(input)) { 
-                    cards[i].style.display = ""; 
-                } else { 
-                    cards[i].style.display = "none"; 
-                }
+                if (cards[i].classList.contains('status-box')) continue; // Jangan sembunyikan kotak status samping saat mengetik search
+                let title = cards[i].getElementsByTagName('h3').textContent.toLowerCase();
+                if (title.includes(input)) { cards[i].style.display = ""; } 
+                else { cards[i].style.display = "none"; }
             }
         }
 
@@ -367,17 +425,13 @@
             let buttons = document.getElementsByClassName('filter-btn');
             for (let b of buttons) b.classList.remove('active');
             btn.classList.add('active');
-            
             let cards = document.getElementsByClassName('item-card');
             for (let i = 0; i < cards.length; i++) {
-                if (kategori === 'all') { 
-                    cards[i].style.display = ""; 
-                } else {
-                    if (cards[i].classList.contains(kategori)) { 
-                        cards[i].style.display = ""; 
-                    } else { 
-                        cards[i].style.display = "none"; 
-                    }
+                if (cards[i].classList.contains('status-box')) continue; // Jangan sembunyikan kotak status samping saat filter diklik
+                if (kategori === 'all') { cards[i].style.display = ""; } 
+                else {
+                    if (cards[i].classList.contains(kategori)) { cards[i].style.display = ""; } 
+                    else { cards[i].style.display = "none"; }
                 }
             }
         }
