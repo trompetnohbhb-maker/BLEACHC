@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bleach Zone - Script Hub</title>
+    <title>Exploit Tools - Script Hub</title>
     <style>
         /* Gaya Tampilan Dasar & Gelap */
         body {
@@ -101,7 +101,7 @@
         }
 
         .content-list {
-            max-height: 350px;
+            max-height: 380px;
             overflow-y: auto;
             text-align: left;
             padding-right: 5px;
@@ -143,13 +143,20 @@
 
         .status-info {
             font-size: 0.8rem;
-            margin-bottom: 10px;
+            margin-bottom: 4px;
             font-style: italic;
             font-weight: bold;
+        }
+        .price-info {
+            font-size: 0.85rem;
+            color: #a5b4fc;
+            margin-bottom: 10px;
+            font-weight: 500;
         }
         .status-working { color: #22c55e; }
         .status-bug { color: #eab308; }
         .status-unknown { color: #a855f7; }
+        .status-down { color: #ef4444; }
 
         .action-btn {
             background: #333;
@@ -186,8 +193,8 @@
 
     <!-- HALAMAN 1: BERANDA AWAL -->
     <div id="homePage" class="container">
-        <h1>BLEACH ZONE</h1>
-        <p>Selamat datang di pusat koleksi script modifikasi game Roblox terbaik dan gratis.</p>
+        <h1>EXPLOIT TOOLS</h1>
+        <p>Selamat datang di pusat koleksi script modifikasi game Roblox terbaik.</p>
         <button onclick="bukaHalamanScript()" class="btn">Jelajahi Script</button>
     </div>
 
@@ -236,25 +243,25 @@
             <!-- Item 4: Codex Executor Mobile -->
             <div class="item-card executor">
                 <span class="tag tag-exec">EXECUTOR MOBILE</span>
-                <h3>Codex Executor V2</h3>
-                <div class="status-info status-not working">🔴 NOT WORKING (NOT UPDATE)</div>
+                <h3>Codex Executor V2 🔴</h3>
+                <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
                 <button class="action-btn" onclick="window.open('https://codex.lol', '_blank')">Unduh Executor</button>
             </div>
 
-            <!-- Item 5: Delta Executor Mobile (LINK ASLI) -->
+            <!-- Item 5: Delta Executor Mobile -->
             <div class="item-card executor">
                 <span class="tag tag-exec">EXECUTOR MOBILE</span>
                 <h3>Delta Executor Mobile</h3>
                 <div class="status-info status-working">🟢 WORKING</div>
-                <button class="action-btn" onclick="window.open('https://deltaexploits.gg/', '_blank')">Unduh Executor</button>
+                <button class="action-btn" onclick="window.open('https://deltaexploits.gg', '_blank')">Unduh Executor</button>
             </div>
 
-            <!-- Item 6: Vega X Mobile (BARU) -->
+            <!-- Item 6: Vega X Mobile -->
             <div class="item-card executor">
                 <span class="tag tag-exec">EXECUTOR MOBILE</span>
                 <h3>Vega X Mobile</h3>
                 <div class="status-info status-working">🟢 WORKING</div>
-                <button class="action-btn" onclick="window.open('https://www.vegax.gg/', '_blank')">Unduh Executor</button>
+                <button class="action-btn" onclick="window.open('https://vegax.gg', '_blank')">Unduh Executor</button>
             </div>
 
             <!-- Item 7: Wave Executor Windows -->
@@ -262,7 +269,8 @@
                 <span class="tag tag-win">EXECUTOR WINDOWS</span>
                 <h3>Wave Executor Windows</h3>
                 <div class="status-info status-working">🟢 WORKING</div>
-                <button class="action-btn" onclick="window.open('https://getwave.gg', '_blank')">Unduh Executor</button>
+                <div class="price-info">💰 Harga: $5.99 USD / 7 Days | $18.99 USD / 30 Days</div>
+                <button class="action-btn" onclick="window.open('https://bloxproducts.com/?affiliate_key=weao#Wave', '_blank')">Beli & Unduh Wave</button>
             </div>
             
         </div>
