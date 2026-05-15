@@ -169,10 +169,21 @@
             width: 100%;
             font-weight: bold;
             transition: 0.2s;
+            margin-top: 4px;
         }
         .action-btn:hover {
             background: #fff;
             color: #000;
+        }
+
+        /* Desain Tombol Berbayar / Premium */
+        .btn-buy {
+            background: #15803d;
+            color: white;
+        }
+        .btn-buy:hover {
+            background: #22c55e;
+            color: white;
         }
         
         .back-btn {
@@ -270,7 +281,8 @@
                 <h3>Wave Executor Windows</h3>
                 <div class="status-info status-working">🟢 WORKING</div>
                 <div class="price-info">💰 Harga: $5.99 USD / 7 Days | $18.99 USD / 30 Days</div>
-                <button class="action-btn" onclick="window.open('https://bloxproducts.com/?affiliate_key=weao#Wave', '_blank')">Beli & Unduh Wave</button>
+                <button class="action-btn" onclick="window.open('https://getwave.gg', '_blank')">Unduh Wave (Official Site)</button>
+                <button class="action-btn btn-buy" onclick="window.open('https://bloxproducts.com', '_blank')">🛒 Beli Premium Key (BloxProducts)</button>
             </div>
             
         </div>
@@ -295,7 +307,7 @@
             let cards = document.getElementsByClassName('item-card');
             
             for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
+                let title = cards[i].getElementsByTagName('h3').textContent.toLowerCase();
                 if (title.includes(input)) {
                     cards[i].style.display = "";
                 } else {
