@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 🛡️ KODE PELINDUNG ANTI-IKLAN + IZIN API ROBLOX -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://tenor.com https://discord.com https://getwave.gg https://bloxproducts.com https://potassium.pro https://cheatsmarket.com https://voltbz.net https://synapse.do https://robloxcheatz.com https://getmadium.net https://getsolara.dev https://xeno.now; connect-src 'self' https://rbxcdn.com https://herokuapp.com https://allorigins.win;">
+    <!-- 🛡️ KODE PELINDUNG ANTI-IKLAN -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://tenor.com https://discord.com https://getwave.gg https://bloxproducts.com https://potassium.pro https://cheatsmarket.com https://voltbz.net https://synapse.do https://robloxcheatz.com https://getmadium.net https://getsolara.dev https://xeno.now https://rbxcdn.com https://roblox.com; connect-src 'self';">
     <title>Exploit Tools - Script Hub</title>
     <style>
         html, body {
@@ -107,7 +107,7 @@
             text-align: center;
         }
 
-        /* AREA BARU SEBELAH KANAN (Roblox Live Status Samping) */
+        /* AREA SEBELAH KANAN (Roblox Live Status Samping) */
         .right-panel {
             width: 100%;
             position: sticky; 
@@ -208,20 +208,6 @@
         .status-unknown { color: #a855f7; }
         .status-down { color: #ef4444; }
 
-        /* Gaya Area Detektor Hasil */
-        .tracker-result-box {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 15px;
-            font-size: 0.85rem;
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            display: none; 
-        }
-        .tracker-result-box.active { display: block; }
-        .scan-text { color: #02ecb5; font-weight: bold; animation: pulse 1s infinite alternate; }
-        @keyframes pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
-
         /* Tombol Aksi */
         .action-btn {
             background: rgba(255, 255, 255, 0.05);
@@ -246,6 +232,7 @@
             background: rgba(2, 236, 181, 0.12);
             border-color: rgba(2, 236, 181, 0.4);
             color: #02ecb5;
+            margin-bottom: 8px;
         }
         .btn-scan:hover {
             background: #02ecb5;
@@ -411,91 +398,41 @@
             </div>
         </div>
 
-        <!-- 3. PANEL KANAN (Roblox Live Status Samping + SISTEM SCANNER REAL API) -->
+        <!-- 3. PANEL KANAN (Roblox Live Tracker dengan 2 Tombol API Resmi) -->
         <div class="right-panel">
             <div class="item-card status-box">
-                <span class="tag tag-status">REAL-TIME AUTO DETECT</span>
-                <h3>Roblox Live API Tracker</h3>
+                <span class="tag tag-status">ROBLOX OFFICIAL API TRACKER</span>
+                <h3>Roblox Live Version Check</h3>
                 <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 15px; line-height: 1.5; text-align: left;">
-                    Menghubungkan langsung ke CDN server pusat Roblox untuk menarik data Version Hash terbaru secara live.
+                    Klik tombol di bawah untuk membuka baris kode data resmi langsung dari database pusat Roblox (100% selalu akurat dan diperbarui per detik):
                 </div>
                 
-                <button class="action-btn btn-scan" onclick="fetchRobloxLiveVersion()">
-                    🔍 Tarik Data Live Server Roblox
+                <!-- 💻 TOMBOL API WINDOWS -->
+                <button class="action-btn btn-scan" onclick="window.open('https://rbxcdn.com/version', '_blank', 'noopener,noreferrer')">
+                    💻 Cek Live Version ID Windows (Raw API)
                 </button>
 
-                <div id="trackerResult" class="tracker-result-box">
-                    <div id="scanStatus" class="scan-text">Membuka Jalur API...</div>
-                    <div id="versionDetails" style="margin-top: 8px; font-weight: 600; text-align: left; line-height: 1.4; color: #aaa;"></div>
-                </div>
+                <!-- 🤖 TOMBOL API ANDROID (YANG TADI KETINGGALAN) -->
+                <button class="action-btn btn-scan" style="background: rgba(6, 182, 212, 0.12); border-color: rgba(6, 182, 212, 0.4); color: #06b6d4;" onclick="window.open('https://roblox.com/v2/client-version/Android', '_blank', 'noopener,noreferrer')">
+                    🤖 Cek Live Versi Android APK (Raw API)
+                </button>
             </div>
         </div>
 
     </div>
 
-    <!-- 🤖 JAVASCRIPT AUTO-DETECT INTERNET LIVE SERVER ROBLOX -->
     <script>
-        function fetchRobloxLiveVersion() {
-            const resultBox = document.getElementById("trackerResult");
-            const scanStatus = document.getElementById("scanStatus");
-            const versionDetails = document.getElementById("versionDetails");
-
-            resultBox.classList.add("active");
-            scanStatus.style.color = "#02ecb5";
-            scanStatus.innerText = "📡 Mengambil data live dari ://roblox.com...";
-            versionDetails.innerText = "";
-
-            // Menembak proxy AllOrigins agar tidak diblokir oleh aturan CORS browser laptop
-            const proxyUrl = "https://allorigins.win/get?url=";
-            const targetUrl = encodeURIComponent("https://rbxcdn.com/version");
-
-            fetch(proxyUrl + targetUrl)
-                .then(response => {
-                    if (response.ok) return response.json();
-                    throw new Error('Jaringan API Sibuk');
-                })
-                .then(data => {
-                    // Membersihkan karakter spasi/enter dari teks mentah server roblox
-                    const liveVersionHash = data.contents.trim();
-                    
-                    const hariIni = new Date();
-                    const opsiFormat = { year: 'numeric', month: 'long', day: 'numeric' };
-                    const tanggalAktif = hariIni.toLocaleDateString('id-ID', opsiFormat);
-
-                    scanStatus.style.color = "#22c55e"; 
-                    scanStatus.innerText = "🟢 Roblox telah update secara otomatis!";
-                    
-                    versionDetails.innerHTML = `
-                        <span style="color: #06b6d4;">• Tanggal Tarik:</span> ${tanggalAktif}<br>
-                        <span style="color: #06b6d4;">• Live Version ID:</span> <span style="color: #ffffff; background: #222; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.75rem; display:block; margin-top:4px; word-break:break-all;">${liveVersionHash}</span><br>
-                        <span style="color: #06b6d4;">• Platform:</span> PC / Windows Client 💻<br>
-                        <span style="color: #22c55e; display:block; margin-top:5px; font-size:0.8rem;">Status API: Connected & Valid ✅</span>
-                    `;
-                })
-                .catch(error => {
-                    // Jika proxy sibuk, sistem otomatis memberikan data cadangan darurat yang paling valid
-                    scanStatus.style.color = "#eab308";
-                    scanStatus.innerText = "⚠️ API Memakai Jalur Backup Menengah";
-                    
-                    const hariIni = new Date();
-                    const tanggalAktif = hariIni.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
-                    
-                    versionDetails.innerHTML = `
-                        <span style="color: #06b6d4;">• Tanggal Tarik:</span> ${tanggalAktif}<br>
-                        <span style="color: #06b6d4;">• Live Version ID:</span> <span style="color: #ffffff; background: #222; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.75rem; display:block; margin-top:4px;">version-ec412128eba3476e</span><br>
-                        <span style="color: #22c55e; display:block; margin-top:5px; font-size:0.8rem;">Status API: Sync Successed ✅</span>
-                    `;
-                });
-        }
-
         function filterSearch() {
             let input = document.getElementById('searchBar').value.toLowerCase();
             let cards = document.getElementsByClassName('item-card');
             for (let i = 0; i < cards.length; i++) {
                 if (cards[i].classList.contains('status-box')) continue;
-                let title = cards[i].getElementsByTagName('h3').textContent.toLowerCase();
-                if (title.includes(input)) { cards[i].style.display = ""; } 
-                else { cards[i].style.display = "none"; }
+                let h3Element = cards[i].getElementsByTagName('h3')[0];
+                if (h3Element) {
+                    let title = h3Element.textContent.toLowerCase();
+                    if (title.includes(input)) { cards[i].style.display = ""; } 
+                    else { cards[i].style.display = "none"; }
+                }
             }
         }
 
