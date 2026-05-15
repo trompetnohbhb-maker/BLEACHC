@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bleach Fanpage - Selamat Datang</title>
+    <title>Bleach Zone - Script Hub</title>
     <style>
         /* Gaya Tampilan Modern & Gelap */
         body {
@@ -20,11 +20,12 @@
         }
         .container {
             max-width: 600px;
+            width: 90%;
             padding: 30px;
             background: #1e1e1e;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 2px solid #ff4500; /* Warna jingga khas Bleach */
+            border: 2px solid #ff4500;
         }
         h1 {
             color: #ff4500;
@@ -38,9 +39,14 @@
             color: #cccccc;
             line-height: 1.6;
         }
-        .btn {
+        /* Style Tombol Dropdown */
+        .dropdown {
+            position: relative;
             display: inline-block;
             margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
             padding: 12px 24px;
             background-color: #ff4500;
             color: white;
@@ -48,10 +54,82 @@
             border-radius: 25px;
             font-weight: bold;
             transition: 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
         }
         .btn:hover {
             background-color: #ff6347;
             transform: scale(1.05);
+        }
+        /* Isi Menu Pilihan */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #252525;
+            min-width: 320px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.6);
+            border-radius: 10px;
+            padding: 12px;
+            z-index: 1;
+            right: 50%;
+            transform: translateX(50%);
+            margin-top: 10px;
+            border: 1px solid #444;
+        }
+        /* Menampilkan menu saat aktif */
+        .dropdown-content.show {
+            display: block;
+        }
+        /* Item di dalam menu */
+        .script-item {
+            background: #1a1a1a;
+            margin: 12px 0;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: left;
+        }
+        .script-item.bloxfruit { border-left: 4px solid #a855f7; }
+        .script-item.aimbot { border-left: 4px solid #eab308; }
+        .script-item.underground { border-left: 4px solid #22c55e; }
+        
+        .script-item h4 {
+            margin: 0 0 4px 0;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        /* Style Teks Info Status */
+        .status-info {
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            font-style: italic;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .status-working { color: #22c55e; }
+        .status-bug { color: #eab308; }
+        .status-unknown { color: #a855f7; }
+        .status-down { color: #ef4444; }
+
+        .copy-btn {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 5px;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+        .copy-btn:hover {
+            background: #ff4500;
         }
     </style>
 </head>
@@ -59,9 +137,67 @@
 
     <div class="container">
         <h1>BLEACH ZONE</h1>
-        <p>Selamat datang di proyek website pertamaku! Halaman ini sedang dalam proses pengembangan untuk menjadi tempat berkumpulnya para penggemar anime.</p>
-        <a href="#" class="btn">Jelajahi Karakter</a>
+        <p>Selamat datang di pusat koleksi script modifikasi game Roblox terbaik dan gratis.</p>
+        
+        <!-- Pembungkus Menu Dropdown -->
+        <div class="dropdown">
+            <button onclick="toggleMenu()" class="btn">Jelajahi Script</button>
+            
+            <div id="myDropdown" class="dropdown-content">
+                
+                <!-- Pilihan 1: Blox Fruit -->
+                <div class="script-item bloxfruit">
+                    <h4>BLOX FRUIT 🟣</h4>
+                    <div class="status-info status-unknown">🟣 NOT WORKING AND UNKNOWN PROBLEM</div>
+                    <button class="copy-btn" onclick="copyScript('loadstring(game:HttpGet(\'https://githubusercontent.com\'))()')">Salin Script</button>
+                </div>
+                
+                <!-- Pilihan 2: Aimbot + ESP -->
+                <div class="script-item aimbot">
+                    <h4>AIMBOT + ESP 🟡</h4>
+                    <div class="status-info status-bug">🟡 WORKING BUT HAVE A BUG</div>
+                    <button class="copy-btn" onclick="copyScript('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
+                </div>
+                
+                <!-- Pilihan 3: Aimbot + ESP Underground Style -->
+                <div class="script-item underground">
+                    <h4>AIMBOT + ESP UNDERGROUND STYLE 🟢</h4>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <button class="copy-btn" onclick="copyScript('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
+                </div>
+                
+            </div>
+        </div>
     </div>
+
+    <script>
+        /* Fungsi untuk Membuka dan Menutup Menu */
+        function toggleMenu() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        /* Fungsi Otomatis untuk Salin Teks Script */
+        function copyScript(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Script berhasil disalin!");
+            }).catch(err => {
+                alert("Gagal menyalin, silakan salin manual.");
+            });
+        }
+
+        /* Menutup menu jika user klik di luar area menu */
+        window.onclick = function(event) {
+            if (!event.target.matches('.btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 
 </body>
 </html>
