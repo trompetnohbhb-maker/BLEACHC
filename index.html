@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exploit Tools - Script Hub</title>
     <style>
         /* Mengunci layar agar tidak bergeser */
@@ -13,36 +13,36 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #050000; /* Dasar Hitam Kemerahan */
+            background-color: #06030c; /* Dasar Hitam Keunguan */
             color: #ffffff;
         }
 
-        /* 🌌 BACKGROUND GARIS-GARIS TECH GRID NEON MERAH (100% Work Otomatis) */
-        .grid-background {
+        /* 🌌 BACKGROUND RADIAL GRADASI NEON CYAN & PURPLE MURNI */
+        .neon-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             z-index: -2;
-            /* Membuat pola garis-garis kotak cyberpunk warna merah redup */
+            /* Perpaduan warna Cyan di kiri atas, Purple di kanan bawah */
             background-image: 
-                linear-gradient(rgba(255, 0, 0, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 0, 0, 0.08) 1px, transparent 1px);
-            background-size: 40px 40px; /* Ukuran kerapatan garis kotak */
-            background-position: center;
+                radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.22) 0%, transparent 50%),
+                radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.25) 0%, transparent 55%);
         }
 
-        /* Efek Pendaran Cahaya Merah Abstrak di Pojok Layar */
-        .glow-overlay {
+        /* Lapisan Garis Grid Minimalis Tipis */
+        .grid-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, transparent 20%, #000000 90%),
-                        radial-gradient(circle at 10% 10%, rgba(255, 0, 0, 0.15) 0%, transparent 45%),
-                        radial-gradient(circle at 90% 90%, rgba(255, 0, 0, 0.15) 0%, transparent 45%);
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center;
             z-index: -1;
         }
 
@@ -57,36 +57,41 @@
             padding: 15px;
         }
 
-        /* 🔮 UI KOTAK MENU TRANSPARAN EMAS/ORANYE DENGAN EFEK BLUR KACA */
+        /* 🔮 KOTAK MENU SUPER BENING TRANSPARAN (GLASSMORPHISM) */
         .container {
             max-width: 600px;
             width: 100%;
             max-height: 85vh;
             padding: 25px;
-            /* Dibuat transparan tembus pandang biar garis merah di belakangnya kelihatan */
-            background: rgba(20, 10, 10, 0.45); 
-            backdrop-filter: blur(12px); /* Efek kaca blur kabut */
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 69, 0, 0.2);
-            border: 1px solid rgba(255, 69, 0, 0.3); /* Garis tepi oranye-merah tipis */
+            /* Dibuat sangat bening transparan tipis agar warna latar belakang menembus sempurna */
+            background: rgba(12, 10, 20, 0.35); 
+            backdrop-filter: blur(14px); /* Efek blur kabut kaca premium */
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 
+                        0 0 25px rgba(6, 182, 212, 0.15),
+                        0 0 25px rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Garis tepi kilau kaca super tipis */
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
         }
 
         h1 {
-            color: #ff4500;
-            font-size: 2.2rem;
+            /* Efek teks gradasi warna Cyan ke Purple */
+            background: linear-gradient(45deg, #06b6d4, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.3rem;
             margin: 0 0 5px 0;
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: 900;
-            text-shadow: 0 0 12px rgba(255, 69, 0, 0.5);
+            filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4));
         }
         .subtitle {
             font-size: 0.9rem;
-            color: #cccccc;
+            color: #cbd5e1;
             margin-bottom: 20px;
         }
         
@@ -94,8 +99,8 @@
         .search-box {
             width: 100%;
             padding: 12px 16px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 12px;
             color: white;
             font-size: 0.95rem;
@@ -105,8 +110,8 @@
             transition: 0.3s;
         }
         .search-box:focus {
-            border-color: #ff4500;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+            border-color: #06b6d4;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
         }
 
         /* Menu Filter Kategori */
@@ -118,9 +123,9 @@
             margin-bottom: 20px;
         }
         .filter-btn {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.03);
             color: #cccccc;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
@@ -129,10 +134,10 @@
             transition: 0.2s;
         }
         .filter-btn.active, .filter-btn:hover {
-            background: #ff4500;
+            background: linear-gradient(45deg, #06b6d4, #a855f7);
             color: white;
-            border-color: #ff4500;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.4);
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
         }
 
         /* Daftar Script Scrollable */
@@ -142,21 +147,16 @@
             text-align: left;
             padding-right: 5px;
         }
-        .content-list::-webkit-scrollbar {
-            width: 5px;
-        }
-        .content-list::-webkit-scrollbar-thumb {
-            background: rgba(255, 69, 0, 0.5);
-            border-radius: 10px;
-        }
+        .content-list::-webkit-scrollbar { width: 5px; }
+        .content-list::-webkit-scrollbar-thumb { background: rgba(168, 85, 247, 0.4); border-radius: 10px; }
 
-        /* Kartu Item Di Dalam Menu */
+        /* Kartu Item */
         .item-card {
-            background: rgba(10, 5, 5, 0.7); /* Diisi hitam transparan tipis agar teks kontras terbaca */
+            background: rgba(5, 5, 10, 0.55); 
             margin-bottom: 12px;
             padding: 15px;
             border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             border-left: 4px solid #fff;
             box-sizing: border-box;
         }
@@ -164,38 +164,14 @@
         .item-card.executor { border-left-color: #06b6d4; }
         .item-card.exec-win { border-left-color: #6366f1; }
 
-        .item-card h3 {
-            margin: 0 0 6px 0;
-            font-size: 1.1rem;
-            color: #ffffff;
-        }
-        .tag {
-            display: inline-block;
-            font-size: 0.65rem;
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-        .tag-script { background: rgba(255, 69, 0, 0.15); color: #ff4500; }
-        .tag-exec { background: rgba(6, 182, 212, 0.15); color: #06b6d4; }
-        .tag-win { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+        .item-card h3 { margin: 0 0 6px 0; font-size: 1.1rem; color: #ffffff; }
+        .tag { display: inline-block; font-size: 0.65rem; padding: 3px 8px; border-radius: 5px; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; }
+        .tag-script { background: rgba(255, 69, 0, 0.12); color: #ff4500; }
+        .tag-exec { background: rgba(6, 182, 212, 0.12); color: #06b6d4; }
+        .tag-win { background: rgba(99, 102, 241, 0.12); color: #818cf8; }
 
-        .status-info {
-            font-size: 0.75rem;
-            margin-bottom: 5px;
-            font-style: italic;
-            font-weight: bold;
-        }
-        .price-info {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin-bottom: 10px;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 6px 10px;
-            border-radius: 6px;
-        }
+        .status-info { font-size: 0.75rem; margin-bottom: 5px; font-style: italic; font-weight: bold; }
+        .price-info { font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px; background: rgba(0, 0, 0, 0.4); padding: 6px 10px; border-radius: 6px; }
         .status-working { color: #22c55e; }
         .status-bug { color: #eab308; }
         .status-unknown { color: #a855f7; }
@@ -203,38 +179,29 @@
 
         /* Tombol */
         .action-btn {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.05);
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             padding: 10px;
             font-size: 0.8rem;
             border-radius: 8px;
             cursor: pointer;
             width: 100%;
             font-weight: bold;
-            transition: 0.2s;
             box-sizing: border-box;
             margin-top: 4px;
+            transition: 0.2s;
         }
-        .action-btn:hover {
-            background: #ffffff;
-            color: #000000;
-        }
-        .btn-buy {
-            background: rgba(21, 128, 61, 0.7);
-            border-color: rgba(34, 197, 94, 0.2);
-        }
-        .btn-buy:hover {
-            background: #22c55e;
-            color: white;
-        }
+        .action-btn:hover { background: #ffffff; color: #000000; }
+        .btn-buy { background: rgba(21, 128, 61, 0.6); border-color: rgba(34, 197, 94, 0.2); }
+        .btn-buy:hover { background: #22c55e; color: white; }
     </style>
 </head>
 <body>
 
-    <!-- 🌌 BACKGROUND GARIS-GARIS CYBERPUNK CSS MURNI -->
-    <div class="grid-background"></div>
-    <div class="glow-overlay"></div>
+    <!-- 🌌 LAYAR WARNA CYAN PURPLE CYBERPUNK -->
+    <div class="neon-background"></div>
+    <div class="grid-overlay"></div>
 
     <!-- Area Tengah Konten -->
     <div class="wrapper">
