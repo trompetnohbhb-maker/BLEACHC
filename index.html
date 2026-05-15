@@ -5,26 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exploit Tools - Script Hub</title>
     <style>
-        /* 🌌 BACKGROUND CYAN-PURPLE LANGSUNG DI BODY (Bisa Di-scroll Penuh) */
-        body {
+        /* Mengunci background utama agar tetap di tempat saat di-scroll */
+        html, body {
             margin: 0;
-            padding: 50px 0;
+            padding: 0;
             width: 100%;
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #ffffff;
-            box-sizing: border-box;
-            
-            /* Gradasi warna Cyan di kiri atas dan Purple di kanan bawah */
-            background: #06030c;
-            background-image: 
-                radial-gradient(circle at 0% 0%, rgba(6, 182, 212, 0.25) 0%, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.28) 0%, transparent 55%);
-            background-attachment: fixed;
-            
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Memulai konten dari atas agar scroll alami */
+            background-color: #06030c;
+        }
+
+        /* 🌌 1. LIVE WALLPAPER ELEMEN (Otomatis Bergerak Tanpa Klik Pertama) */
+        .live-wallpaper-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -3;
+            object-fit: cover; /* Memaksa animasi menutup seluruh layar laptop secara penuh */
+            pointer-events: none;
+        }
+
+        /* 🎨 2. LAPISAN GRADASI WARNA CYAN-PURPLE (Biar Gambar Menyatu Sempurna) */
+        .color-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 0% 0%, rgba(6, 182, 212, 0.25) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.28) 0%, transparent 55%),
+                        rgba(6, 3, 12, 0.55); /* Lapisan kegelapan 55% biar teks kontras dan jelas */
+            z-index: -2;
+            pointer-events: none;
         }
 
         /* Lapisan Grid Garis-Garis Kisi Cyberpunk */
@@ -43,11 +58,12 @@
             pointer-events: none;
         }
 
-        /* 🔮 WRAPPER UTAMA (Langsung Menempel Tanpa Kotak Pembatas) */
+        /* 🔮 WRAPPER KONTEN (Memulai dari atas agar bisa di-scroll alami ke bawah) */
         .wrapper {
             max-width: 600px;
             width: 90%;
             margin: 0 auto;
+            padding: 50px 0;
             text-align: center;
             box-sizing: border-box;
         }
@@ -84,6 +100,7 @@
             outline: none;
             transition: 0.3s ease;
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         .search-box:focus {
             border-color: #06b6d4;
@@ -110,6 +127,7 @@
             font-size: 0.85rem;
             transition: 0.2s ease;
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         .filter-btn.active, .filter-btn:hover {
             background: linear-gradient(45deg, #06b6d4, #a855f7);
@@ -125,9 +143,9 @@
             width: 100%;
         }
 
-        /* Kartu Item yang Halus Mengambang */
+        /* Kartu Item Mengambang Halus (Glassmorphism Ringan) */
         .item-card {
-            background: rgba(15, 15, 25, 0.45); /* Transparan tipis agar menyatu dengan background */
+            background: rgba(15, 15, 25, 0.45); 
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             margin-bottom: 16px;
@@ -161,7 +179,7 @@
         .status-unknown { color: #a855f7; }
         .status-down { color: #ef4444; }
 
-        /* Tombol Aksi Premium */
+        /* Tombol Aksi */
         .action-btn {
             background: rgba(255, 255, 255, 0.05);
             color: #fff;
@@ -183,10 +201,14 @@
 </head>
 <body>
 
-    <!-- Kisi Garis Grid Latar Belakang -->
+    <!-- 🎥 LIVE WALLPAPER ANIMASI MATRIKS NEON (100% Otomatis Tanpa Blokir Browser) -->
+    <img class="live-wallpaper-bg" src="https://tenor.com" alt="Cyberpunk Neon Live Wallpaper">
+
+    <!-- Lapisan Warna Gradasi & Garis Grid Cyberpunk -->
+    <div class="color-overlay"></div>
     <div class="grid-overlay"></div>
 
-    <!-- Konten Utama (Langsung Nempel Tanpa Box Tengah) -->
+    <!-- Konten Utama (Menempel & Mengambang Bebas) -->
     <div class="wrapper">
         <h1>EXPLOIT TOOLS</h1>
         <div class="subtitle">Koleksi premium script dan executor game Roblox terbaik.</div>
