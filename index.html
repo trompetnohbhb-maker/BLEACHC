@@ -13,41 +13,30 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #000000;
+            background-color: #050505;
             color: #ffffff;
         }
 
-        /* 🎥 TEMPAT VIDEO YOUTUBE LIVE WALLPAPER */
-        .video-background-container {
+        /* 🌌 LIVE WALLPAPER GIF (Otomatis Berputar Tanpa Klik Pertama) */
+        .live-wallpaper {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            pointer-events: none; /* Mencegah user mengklik video YT */
-            overflow: hidden;
-        }
-        /* Memaksa video melebar penuh dan menutup layar laptop */
-        .video-background-container iframe {
-            position: absolute;
-            top: 50%;
-            left: 50%;
             width: 100vw;
-            height: 56.25vw; /* Rasio 16:9 */
-            min-height: 100vh;
-            min-width: 177.77vh; /* Rasio 16:9 */
-            transform: translate(-50%, -50%);
+            height: 100vh;
+            z-index: -2;
+            object-fit: cover; /* Memaksa animasi menutup seluruh layar laptop */
+            background-position: center;
         }
 
-        /* Lapisan Gelap Di Atas Video YouTube Biar Tulisan Menu Jelas */
+        /* Lapisan Gelap Di Atas Wallpaper Biar Tulisan Menu Jelas */
         .video-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.65); /* Menggelapkan background video */
+            background: rgba(0, 0, 0, 0.7); /* Menggelapkan latar belakang */
             z-index: -1;
         }
 
@@ -62,14 +51,14 @@
             padding: 15px;
         }
 
-        /* 🔮 UI GLASSMORPHISM TRANSPARAN (Efek Kaca Asli Tembus Pandang) */
+        /* 🔮 UI GLASSMORPHISM TRANSPARAN (Efek Kaca Tembus Pandang) */
         .container {
             max-width: 600px;
             width: 100%;
             max-height: 90vh;
             padding: 25px;
-            background: rgba(15, 15, 25, 0.5); /* Tembus pandang */
-            backdrop-filter: blur(15px); /* Membuat video di balik kotak menjadi blur */
+            background: rgba(15, 15, 25, 0.55); /* Efek transparan */
+            backdrop-filter: blur(15px); /* Membuat efek blur di dalam kotak */
             -webkit-backdrop-filter: blur(15px);
             border-radius: 24px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 69, 0, 0.15);
@@ -236,10 +225,9 @@
 </head>
 <body>
 
-    <!-- 🎥 WADAH BACKGROUND YOUTUBE MATA MERAH -->
-    <div class="video-background-container">
-        <div id="player"></div>
-    </div>
+    <!-- 🌌 LIVE BACKGROUND WALLPAPER (100% Otomatis Bergerak Menggunakan File Gambar Animasi) -->
+    <img class="live-wallpaper" src="https://tenor.com" alt="Anime Red Eyes Live Wallpaper">
+    
     <div class="video-overlay"></div>
 
     <!-- Area Tengah Konten -->
@@ -319,40 +307,7 @@
         </div>
     </div>
 
-    <!-- 🛠️ SKRIP INTEGRASI YOUTUBE IFRAME API -->
-    <script src="https://youtube.com"></script>
     <script>
-        let player;
-        
-        // 🟢 ID Video dari link YT yang kamu berikan tadi
-        let youtubeVideoId = 'B6ZrAaGpsNI'; 
-
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                videoId: youtubeVideoId,
-                playerVars: {
-                    'autoplay': 1,
-                    'controls': 0,      // Sembunyikan tombol pause/play
-                    'showinfo': 0,      // Sembunyikan info judul
-                    'rel': 0,           // Mencegah video rekomendasi lain
-                    'loop': 1,          // Mengulang terus-menerus
-                    'playlist': youtubeVideoId, // Diperlukan agar fungsi loop YT aktif
-                    'mute': 1,          // Wajib di-mute agar otomatis berputar di browser
-                    'iv_load_policy': 3,
-                    'cc_load_policy': 0,
-                    'modestbranding': 1 // Sembunyikan logo YouTube
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
-
-        /* Fungsi Fitur Pencarian Real-Time */
         function filterSearch() {
             let input = document.getElementById('searchBar').value.toLowerCase();
             let cards = document.getElementsByClassName('item-card');
@@ -363,7 +318,6 @@
             }
         }
 
-        /* Fungsi Filter Kategori */
         function filterKategori(kategori, btn) {
             let buttons = document.getElementsByClassName('filter-btn');
             for (let b of buttons) b.classList.remove('active');
@@ -378,7 +332,6 @@
             }
         }
 
-        /* Fungsi Salin Clipboard */
         function copyText(text) {
             var tempInput = document.createElement("input");
             tempInput.value = text;
