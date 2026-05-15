@@ -13,48 +13,30 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #05040a;
+            background-color: #030307;
             color: #ffffff;
         }
 
-        /* 🌌 BACKGROUND ANIMASI KABUT NEON RED-EYE (100% Work Anti Layar Hitam) */
-        .animated-bg {
+        /* 🌌 KANVAS UNTUK ANIMASI PARTIKEL DNA BERGERAK */
+        #dnaCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             z-index: -2;
-            background: radial-gradient(circle at 50% 50%, #1a0808, #050508);
-            overflow: hidden;
-        }
-        /* Efek sorot mata merah menyala abstrak yang bergerak otomatis */
-        .animated-bg::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background-image: 
-                radial-gradient(circle at 30% 40%, rgba(255, 0, 0, 0.25) 0%, transparent 35%),
-                radial-gradient(circle at 70% 40%, rgba(255, 0, 0, 0.25) 0%, transparent 35%),
-                radial-gradient(circle at 50% 70%, rgba(99, 102, 241, 0.15) 0%, transparent 45%);
-            animation: pulseGlow 8s infinite alternate ease-in-out;
-        }
-        @keyframes pulseGlow {
-            0% { transform: translate(0, 0) scale(1); filter: blur(5px); }
-            100% { transform: translate(2%, 3%) scale(1.08); filter: blur(0px); }
         }
 
-        /* Lapisan Gelap Penyeimbang Bayangan */
-        .video-overlay {
+        /* Lapisan Gradasi Warna Gelap (Hitam - Merah - Biru) */
+        .color-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: radial-gradient(circle at 15% 20%, rgba(255, 0, 0, 0.12) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 80%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
+                        rgba(5, 5, 10, 0.5);
             z-index: -1;
         }
 
@@ -69,35 +51,39 @@
             padding: 15px;
         }
 
-        /* 🔮 UI GLASSMORPHISM TRANSPARAN (Efek Kaca Tembus Pandang Nyata) */
+        /* 🔮 UI GLASSMORPHISM TRANSPARAN PREMIUM (Efek Kaca) */
         .container {
             max-width: 600px;
             width: 100%;
             max-height: 85vh;
             padding: 25px;
-            background: rgba(18, 18, 28, 0.55); /* Transparan */
-            backdrop-filter: blur(16px); /* Efek Kaca Blur */
+            background: rgba(10, 10, 20, 0.6); /* Efek Kaca Transparan */
+            backdrop-filter: blur(16px); /* Membuat DNA di balik kotak menjadi blur */
             -webkit-backdrop-filter: blur(16px);
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.12); /* Kilau Tepi Kaca */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 
+                        0 0 25px rgba(255, 69, 0, 0.15),
+                        0 0 25px rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
         }
 
         h1 {
-            color: #ff4500;
-            font-size: 2.2rem;
+            background: linear-gradient(45deg, #ff4500, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.4rem;
             margin: 0 0 5px 0;
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: 900;
-            text-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
+            filter: drop-shadow(0 0 8px rgba(255, 69, 0, 0.3));
         }
         .subtitle {
             font-size: 0.9rem;
-            color: #cccccc;
+            color: #b3b3b3;
             margin-bottom: 20px;
         }
         
@@ -106,7 +92,7 @@
             width: 100%;
             padding: 12px 16px;
             background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
             color: white;
             font-size: 0.95rem;
@@ -117,7 +103,7 @@
         }
         .search-box:focus {
             border-color: #ff4500;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.2);
         }
 
         /* Menu Filter Kategori */
@@ -129,9 +115,9 @@
             margin-bottom: 20px;
         }
         .filter-btn {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             color: #cccccc;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
@@ -140,10 +126,10 @@
             transition: 0.2s;
         }
         .filter-btn.active, .filter-btn:hover {
-            background: #ff4500;
+            background: linear-gradient(45deg, #ff4500, #0066ff);
             color: white;
-            border-color: #ff4500;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.4);
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
         }
 
         /* Daftar Script Scrollable */
@@ -157,13 +143,13 @@
             width: 5px;
         }
         .content-list::-webkit-scrollbar-thumb {
-            background: rgba(255, 69, 0, 0.5);
+            background: rgba(0, 102, 255, 0.4);
             border-radius: 10px;
         }
 
         /* Kartu Item */
         .item-card {
-            background: rgba(5, 5, 5, 0.6);
+            background: rgba(5, 5, 10, 0.65);
             margin-bottom: 12px;
             padding: 15px;
             border-radius: 14px;
@@ -189,9 +175,9 @@
             margin-bottom: 8px;
             text-transform: uppercase;
         }
-        .tag-script { background: rgba(255, 69, 0, 0.15); color: #ff4500; }
-        .tag-exec { background: rgba(6, 182, 212, 0.15); color: #06b6d4; }
-        .tag-win { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+        .tag-script { background: rgba(255, 69, 0, 0.12); color: #ff4500; }
+        .tag-exec { background: rgba(6, 182, 212, 0.12); color: #06b6d4; }
+        .tag-win { background: rgba(99, 102, 241, 0.12); color: #818cf8; }
 
         .status-info {
             font-size: 0.75rem;
@@ -232,7 +218,7 @@
             color: #000000;
         }
         .btn-buy {
-            background: rgba(21, 128, 61, 0.7);
+            background: rgba(21, 128, 61, 0.6);
             border-color: rgba(34, 197, 94, 0.2);
         }
         .btn-buy:hover {
@@ -243,9 +229,9 @@
 </head>
 <body>
 
-    <!-- 🌌 LIVE WALLPAPER CSS MURNI -->
-    <div class="animated-bg"></div>
-    <div class="video-overlay"></div>
+    <!-- 🌌 KANVAS LIVE ANIMASI DNA NEON -->
+    <canvas id="dnaCanvas"></canvas>
+    <div class="color-overlay"></div>
 
     <!-- Area Tengah Konten -->
     <div class="wrapper">
@@ -324,7 +310,106 @@
         </div>
     </div>
 
+    <!-- 🧬 JAVASCRIPT ENGINE UNTUK MERANCANG ANIMASI DNA BERPUTAR 3D -->
     <script>
+        const canvas = document.getElementById('dnaCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        // Pengaturan Titik Untaian DNA (Merah dan Biru)
+        const numNodes = 45;
+        const speed = 0.015;
+        let rotation = 0;
+
+        function drawDNA() {
+            ctx.clearRect(0, 0, width, height);
+            rotation += speed;
+
+            const startX = width * 0.15; // Posisi helix kiri di laptop
+            const startX2 = width * 0.85; // Posisi helix kanan di laptop
+            const spacingY = height / numNodes;
+
+            for (let i = 0; i < numNodes; i++) {
+                const currentY = i * spacingY;
+                
+                // Menghitung putaran gelombang sin/cos 3D
+                const angle = rotation + (i * 0.25);
+                const sinValue = Math.sin(angle);
+                const cosValue = Math.cos(angle);
+
+                // Ukuran partikel berdasarkan kedalaman semu 3D
+                const size = (cosValue + 1.2) * 2.5;
+
+                // --- HELIX SISI KIRI LAPTOP ---
+                const x1_left = startX + (sinValue * 45);
+                const x2_left = startX - (sinValue * 45);
+
+                // Garis Penghubung Untaian DNA Kiri
+                ctx.beginPath();
+                ctx.moveTo(x1_left, currentY);
+                ctx.lineTo(x2_left, currentY);
+                ctx.strokeStyle = `rgba(100, 100, 150, ${Math.abs(cosValue) * 0.15})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Bola Node Merah (Untaian A)
+                ctx.beginPath();
+                ctx.arc(x1_left, currentY, size, 0, Math.PI * 2);
+                ctx.fillStyle = cosValue > 0 ? '#ff3333' : '#990000'; // Efek bayangan gelap terang
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = '#ff3333';
+                ctx.fill();
+
+                // Bola Node Biru (Untaian B)
+                ctx.beginPath();
+                ctx.arc(x2_left, currentY, size, 0, Math.PI * 2);
+                ctx.fillStyle = cosValue > 0 ? '#0066ff' : '#0033aa';
+                ctx.shadowColor = '#0066ff';
+                ctx.fill();
+
+
+                // --- HELIX SISI KANAN LAPTOP ---
+                const x1_right = startX2 + (sinValue * 45);
+                const x2_right = startX2 - (sinValue * 45);
+
+                // Garis Penghubung Untaian DNA Kanan
+                ctx.beginPath();
+                ctx.moveTo(x1_right, currentY);
+                ctx.lineTo(x2_right, currentY);
+                ctx.strokeStyle = `rgba(100, 100, 150, ${Math.abs(cosValue) * 0.15})`;
+                ctx.stroke();
+
+                // Bola Node Merah Kanan
+                ctx.beginPath();
+                ctx.arc(x1_right, currentY, size, 0, Math.PI * 2);
+                ctx.fillStyle = cosValue > 0 ? '#ff3333' : '#990000';
+                ctx.shadowColor = '#ff3333';
+                ctx.fill();
+
+                // Bola Node Biru Kanan
+                ctx.beginPath();
+                ctx.arc(x2_right, currentY, size, 0, Math.PI * 2);
+                ctx.fillStyle = cosValue > 0 ? '#0066ff' : '#0033aa';
+                ctx.shadowColor = '#0066ff';
+                ctx.fill();
+                
+                // Reset efek shadow biar gak nge-lag
+                ctx.shadowBlur = 0;
+            }
+
+            requestAnimationFrame(drawDNA);
+        }
+
+        drawDNA();
+
+        /* Fungsi Fitur Pencarian */
         function filterSearch() {
             let input = document.getElementById('searchBar').value.toLowerCase();
             let cards = document.getElementsByClassName('item-card');
@@ -335,6 +420,7 @@
             }
         }
 
+        /* Fungsi Filter Kategori */
         function filterKategori(kategori, btn) {
             let buttons = document.getElementsByClassName('filter-btn');
             for (let b of buttons) b.classList.remove('active');
@@ -349,6 +435,7 @@
             }
         }
 
+        /* Fungsi Salin Clipboard */
         function copyText(text) {
             var tempInput = document.createElement("input");
             tempInput.value = text;
