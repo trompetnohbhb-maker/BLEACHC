@@ -5,103 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exploit Tools - Script Hub</title>
     <style>
-        /* Gaya Tampilan Dasar & Gelap */
+        /* Gaya Tampilan Dasar & Gelap Premium */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
+            background-color: #0d0d0d;
             color: #ffffff;
             margin: 0;
-            padding: 0;
+            padding: 20px 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             text-align: center;
+            box-sizing: border-box;
         }
         .container {
             max-width: 650px;
             width: 90%;
             padding: 30px;
-            background: #1e1e1e;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: #161616;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 69, 0, 0.1);
             border: 2px solid #ff4500;
         }
         h1 {
             color: #ff4500;
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 5px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
         }
-        p {
-            font-size: 1.1rem;
-            color: #cccccc;
-            line-height: 1.6;
-        }
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #ff4500;
-            color: white;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: 0.3s ease;
-            cursor: pointer;
-            border: none;
+        .subtitle {
             font-size: 1rem;
-            margin-top: 20px;
-        }
-        .btn:hover {
-            background-color: #ff6347;
-            transform: scale(1.05);
-        }
-
-        /* HALAMAN KEDUA */
-        .hidden {
-            display: none !important;
+            color: #888888;
+            margin-bottom: 25px;
         }
         
+        /* Search Bar Futuristik */
         .search-box {
             width: 100%;
-            padding: 12px;
-            background: #252525;
-            border: 1px solid #444;
-            border-radius: 8px;
+            padding: 14px;
+            background: #1f1f1f;
+            border: 1px solid #333;
+            border-radius: 10px;
             color: white;
             font-size: 1rem;
             box-sizing: border-box;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             outline: none;
+            transition: 0.3s;
         }
         .search-box:focus {
             border-color: #ff4500;
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.2);
         }
 
+        /* Menu Kategori */
         .filter-menu {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         .filter-btn {
-            background: #333;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
+            background: #222;
+            color: #aaa;
+            border: 1px solid #333;
+            padding: 10px 18px;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: 0.2s;
         }
         .filter-btn.active, .filter-btn:hover {
             background: #ff4500;
+            color: white;
+            border-color: #ff4500;
+            box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
         }
 
+        /* Daftar Konten */
         .content-list {
-            max-height: 380px;
+            max-height: 420px;
             overflow-y: auto;
             text-align: left;
             padding-right: 5px;
@@ -110,113 +99,111 @@
             width: 6px;
         }
         .content-list::-webkit-scrollbar-thumb {
-            background: #444;
+            background: #333;
             border-radius: 3px;
         }
 
+        /* Kartu Item Modifikasi */
         .item-card {
-            background: #1a1a1a;
-            margin-bottom: 12px;
-            padding: 14px;
-            border-radius: 8px;
-            border-left: 4px solid #fff;
+            background: #1c1c1c;
+            margin-bottom: 15px;
+            padding: 16px;
+            border-radius: 12px;
+            border-left: 5px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.2s;
+        }
+        .item-card:hover {
+            transform: translateY(-2px);
         }
         .item-card.script-roblox { border-left-color: #ff4500; }
         .item-card.executor { border-left-color: #06b6d4; }
         .item-card.exec-win { border-left-color: #6366f1; }
 
         .item-card h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.1rem;
+            margin: 0 0 6px 0;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
         }
         .tag {
             display: inline-block;
-            font-size: 0.75rem;
-            padding: 3px 8px;
-            border-radius: 4px;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 5px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
         }
-        .tag-script { background: #ff4500; color: white; }
-        .tag-exec { background: #06b6d4; color: black; }
-        .tag-win { background: #6366f1; color: white; }
+        .tag-script { background: rgba(255, 69, 0, 0.15); color: #ff4500; border: 1px solid rgba(255, 69, 0, 0.3); }
+        .tag-exec { background: rgba(6, 182, 212, 0.15); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.3); }
+        .tag-win { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
 
         .status-info {
             font-size: 0.8rem;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             font-style: italic;
             font-weight: bold;
         }
         .price-info {
             font-size: 0.85rem;
-            color: #a5b4fc;
-            margin-bottom: 10px;
+            color: #94a3b8;
+            margin-bottom: 12px;
             font-weight: 500;
+            background: #262626;
+            padding: 6px 10px;
+            border-radius: 6px;
+            border-left: 3px solid #6366f1;
         }
         .status-working { color: #22c55e; }
         .status-bug { color: #eab308; }
         .status-unknown { color: #a855f7; }
         .status-down { color: #ef4444; }
 
+        /* Tombol Aksi */
         .action-btn {
-            background: #333;
+            background: #2a2a2a;
             color: #fff;
-            border: none;
-            padding: 8px 12px;
+            border: 1px solid #444;
+            padding: 10px 14px;
             font-size: 0.85rem;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             width: 100%;
             font-weight: bold;
             transition: 0.2s;
-            margin-top: 4px;
+            margin-top: 6px;
+            box-sizing: border-box;
         }
         .action-btn:hover {
-            background: #fff;
-            color: #000;
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
         }
 
-        /* Desain Tombol Berbayar / Premium */
+        /* Tombol Premium Berbayar */
         .btn-buy {
-            background: #15803d;
+            background: #166534;
             color: white;
+            border-color: #15803d;
         }
         .btn-buy:hover {
             background: #22c55e;
             color: white;
-        }
-        
-        .back-btn {
-            background: none;
-            border: none;
-            color: #888;
-            cursor: pointer;
-            font-size: 0.9rem;
-            margin-top: 15px;
-            text-decoration: underline;
-        }
-        .back-btn:hover {
-            color: #ff4500;
+            border-color: #22c55e;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <!-- HALAMAN 1: BERANDA AWAL -->
-    <div id="homePage" class="container">
+    <div class="container">
         <h1>EXPLOIT TOOLS</h1>
-        <p>Selamat datang di pusat koleksi script modifikasi game Roblox terbaik.</p>
-        <button onclick="bukaHalamanScript()" class="btn">Jelajahi Script</button>
-    </div>
-
-    <!-- HALAMAN 2: HUB UTAMA -->
-    <div id="scriptPage" class="container hidden">
-        <h1>SCRIPT HUB</h1>
+        <div class="subtitle">Pusat koleksi script dan executor game Roblox terbaik.</div>
         
-        <!-- Input Pencarian -->
+        <!-- Input Pencarian Langsung Aktif -->
         <input type="text" id="searchBar" class="search-box" placeholder="Cari script atau executor..." onkeyup="filterSearch()">
         
-        <!-- Menu Kategori -->
+        <!-- Menu Kategori Filter -->
         <div class="filter-menu">
             <button class="filter-btn active" onclick="filterKategori('all', this)">Semua</button>
             <button class="filter-btn" onclick="filterKategori('script-roblox', this)">Script Roblox</button>
@@ -224,7 +211,7 @@
             <button class="filter-btn" onclick="filterKategori('exec-win', this)">Executor Windows</button>
         </div>
 
-        <!-- Wadah List Data -->
+        <!-- Wadah Daftar Data -->
         <div class="content-list">
             
             <!-- Item 1: Blox Fruit -->
@@ -282,32 +269,20 @@
                 <div class="status-info status-working">🟢 WORKING</div>
                 <div class="price-info">💰 Harga: $5.99 USD / 7 Days | $18.99 USD / 30 Days</div>
                 <button class="action-btn" onclick="window.open('https://getwave.gg', '_blank')">Unduh Wave (Official Site)</button>
-                <button class="action-btn btn-buy" onclick="window.open('https://bloxproducts.com/#Wave', '_blank')">🛒 Beli Premium Key (BloxProducts)</button>
+                <button class="action-btn btn-buy" onclick="window.open('https://bloxproducts.com', '_blank')">🛒 Beli Premium Key (BloxProducts)</button>
             </div>
             
         </div>
-
-        <button class="back-btn" onclick="kembaliKeHome()">← Kembali ke Beranda</button>
     </div>
 
     <script>
-        function bukaHalamanScript() {
-            document.getElementById("homePage").classList.add("hidden");
-            document.getElementById("scriptPage").classList.remove("hidden");
-        }
-
-        function kembaliKeHome() {
-            document.getElementById("scriptPage").classList.add("hidden");
-            document.getElementById("homePage").classList.remove("hidden");
-        }
-
         /* Fungsi Fitur Pencarian Real-Time */
         function filterSearch() {
             let input = document.getElementById('searchBar').value.toLowerCase();
             let cards = document.getElementsByClassName('item-card');
             
             for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].getElementsByTagName('h3').textContent.toLowerCase();
+                let title = cards[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
                 if (title.includes(input)) {
                     cards[i].style.display = "";
                 } else {
