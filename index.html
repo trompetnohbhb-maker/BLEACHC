@@ -5,61 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exploit Tools - Script Hub</title>
     <style>
-        /* Gaya Tampilan Dasar & Gelap Premium */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0d0d0d;
-            color: #ffffff;
+        /* Reset Dasar & Mengunci Layar */
+        html, body {
             margin: 0;
-            padding: 20px 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
+
+        /* 🎥 KOMPONEN LIVE WALLPAPER VIDEO BACKGROUND */
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+            object-fit: cover;
+        }
+
+        /* Lapisan Gelap Di Atas Video Biar Gak Silau */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65); /* Menggelapkan video background */
+            z-index: -1;
+        }
+
+        /* Pembungkus Konten Utama */
+        .wrapper {
+            width: 100%;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            text-align: center;
             box-sizing: border-box;
+            padding: 10px;
         }
+
+        /* 🔮 EFEK GLASSMORPHISM KOTAK UTAMA (EFEK KACA) */
         .container {
             max-width: 650px;
-            width: 90%;
+            width: 100%;
             padding: 30px;
-            background: #161616;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 69, 0, 0.1);
-            border: 2px solid #ff4500;
+            background: rgba(20, 20, 20, 0.65); /* Efek kaca transparan gelap */
+            backdrop-filter: blur(12px); /* Membuat latar belakang video blur di dalam kotak */
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 69, 0, 0.2);
+            border: 1px solid rgba(255, 69, 0, 0.4); /* Garis tepi tipis menyala */
+            box-sizing: border-box;
         }
+
         h1 {
             color: #ff4500;
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             margin-top: 0;
             margin-bottom: 5px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
-        }
-        .subtitle {
-            font-size: 1rem;
-            color: #888888;
-            margin-bottom: 25px;
+            letter-spacing: 4px;
+            font-weight: 900;
+            text-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
         }
         
-        /* Search Bar Futuristik */
+        .subtitle {
+            font-size: 0.95rem;
+            color: #bbbbbb;
+            margin-bottom: 25px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Search Bar Cyberpunk */
         .search-box {
             width: 100%;
-            padding: 14px;
-            background: #1f1f1f;
-            border: 1px solid #333;
-            border-radius: 10px;
+            padding: 14px 18px;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(255, 69, 0, 0.3);
+            border-radius: 12px;
             color: white;
             font-size: 1rem;
             box-sizing: border-box;
             margin-bottom: 20px;
             outline: none;
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
         .search-box:focus {
             border-color: #ff4500;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.2);
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.4);
+            background: #000000;
         }
 
         /* Menu Kategori */
@@ -71,26 +114,27 @@
             margin-bottom: 25px;
         }
         .filter-btn {
-            background: #222;
-            color: #aaa;
-            border: 1px solid #333;
-            padding: 10px 18px;
-            border-radius: 25px;
+            background: rgba(30, 30, 30, 0.7);
+            color: #cccccc;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
             font-size: 0.85rem;
-            transition: 0.2s;
+            transition: 0.3s ease;
         }
         .filter-btn.active, .filter-btn:hover {
             background: #ff4500;
             color: white;
             border-color: #ff4500;
-            box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+            transform: translateY(-1px);
         }
 
-        /* Daftar Konten */
+        /* Daftar Konten Scrollable */
         .content-list {
-            max-height: 420px;
+            max-height: 380px;
             overflow-y: auto;
             text-align: left;
             padding-right: 5px;
@@ -99,22 +143,23 @@
             width: 6px;
         }
         .content-list::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 3px;
+            background: rgba(255, 69, 0, 0.4);
+            border-radius: 10px;
         }
 
-        /* Kartu Item Modifikasi */
+        /* Kartu Item Bergaya Minimalis Premium */
         .item-card {
-            background: #1c1c1c;
+            background: rgba(15, 15, 15, 0.8);
             margin-bottom: 15px;
-            padding: 16px;
-            border-radius: 12px;
+            padding: 18px;
+            border-radius: 14px;
             border-left: 5px solid #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: 0.2s ease;
         }
         .item-card:hover {
-            transform: translateY(-2px);
+            transform: scale(1.01);
+            background: rgba(5, 5, 5, 0.9);
         }
         .item-card.script-roblox { border-left-color: #ff4500; }
         .item-card.executor { border-left-color: #06b6d4; }
@@ -122,17 +167,21 @@
 
         .item-card h3 {
             margin: 0 0 6px 0;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             letter-spacing: 0.5px;
+            color: #ffffff;
         }
+        
+        /* Label Kategori */
         .tag {
             display: inline-block;
             font-size: 0.7rem;
             padding: 4px 10px;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
         .tag-script { background: rgba(255, 69, 0, 0.15); color: #ff4500; border: 1px solid rgba(255, 69, 0, 0.3); }
         .tag-exec { background: rgba(6, 182, 212, 0.15); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.3); }
@@ -146,14 +195,15 @@
         }
         .price-info {
             font-size: 0.85rem;
-            color: #94a3b8;
-            margin-bottom: 12px;
+            color: #cbd5e1;
+            margin-bottom: 14px;
             font-weight: 500;
-            background: #262626;
-            padding: 6px 10px;
-            border-radius: 6px;
+            background: rgba(30, 30, 30, 0.6);
+            padding: 8px 12px;
+            border-radius: 8px;
             border-left: 3px solid #6366f1;
         }
+        
         .status-working { color: #22c55e; }
         .status-bug { color: #eab308; }
         .status-unknown { color: #a855f7; }
@@ -161,16 +211,16 @@
 
         /* Tombol Aksi */
         .action-btn {
-            background: #2a2a2a;
+            background: rgba(40, 40, 40, 0.8);
             color: #fff;
-            border: 1px solid #444;
-            padding: 10px 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 11px 14px;
             font-size: 0.85rem;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             width: 100%;
             font-weight: bold;
-            transition: 0.2s;
+            transition: 0.2s ease;
             margin-top: 6px;
             box-sizing: border-box;
         }
@@ -178,11 +228,12 @@
             background: #ffffff;
             color: #000000;
             border-color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
 
-        /* Tombol Premium Berbayar */
+        /* Tombol Premium Spesial */
         .btn-buy {
-            background: #166534;
+            background: rgba(22, 101, 52, 0.8);
             color: white;
             border-color: #15803d;
         }
@@ -190,88 +241,100 @@
             background: #22c55e;
             color: white;
             border-color: #22c55e;
-            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>EXPLOIT TOOLS</h1>
-        <div class="subtitle">Pusat koleksi script dan executor game Roblox terbaik.</div>
-        
-        <!-- Input Pencarian Langsung Aktif -->
-        <input type="text" id="searchBar" class="search-box" placeholder="Cari script atau executor..." onkeyup="filterSearch()">
-        
-        <!-- Menu Kategori Filter -->
-        <div class="filter-menu">
-            <button class="filter-btn active" onclick="filterKategori('all', this)">Semua</button>
-            <button class="filter-btn" onclick="filterKategori('script-roblox', this)">Script Roblox</button>
-            <button class="filter-btn" onclick="filterKategori('executor', this)">Executor Mobile</button>
-            <button class="filter-btn" onclick="filterKategori('exec-win', this)">Executor Windows</button>
-        </div>
+    <!-- 🎥 LIVE WALLPAPER ANIME VIDEO ELEMENT (AutoPlay, Muted, Loop) -->
+    <video class="video-background" autoplay loop muted playsinline>
+        <source src="https://nitrocdn.com" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <!-- Lapisan Gelap Penyeimbang Cahaya Video -->
+    <div class="video-overlay"></div>
 
-        <!-- Wadah Daftar Data -->
-        <div class="content-list">
+    <!-- Konten Utama Tengah Layar -->
+    <div class="wrapper">
+        <div class="container">
+            <h1>EXPLOIT TOOLS</h1>
+            <div class="subtitle">Koleksi premium script dan executor game Roblox terbaik.</div>
             
-            <!-- Item 1: Blox Fruit -->
-            <div class="item-card script-roblox">
-                <span class="tag tag-script">SCRIPT ROBLOX</span>
-                <h3>BLOX FRUIT 🟣</h3>
-                <div class="status-info status-unknown">🟣 NOT WORKING AND UNKNOWN PROBLEM</div>
-                <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://githubusercontent.com\'))()')">Salin Script</button>
-            </div>
+            <!-- Input Pencarian -->
+            <input type="text" id="searchBar" class="search-box" placeholder="Cari script atau executor..." onkeyup="filterSearch()">
             
-            <!-- Item 2: Aimbot + ESP -->
-            <div class="item-card script-roblox">
-                <span class="tag tag-script">SCRIPT ROBLOX</span>
-                <h3>AIMBOT + ESP 🟡</h3>
-                <div class="status-info status-bug">🟡 WORKING BUT HAVE A BUG</div>
-                <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
-            </div>
-            
-            <!-- Item 3: Aimbot + ESP Underground Style -->
-            <div class="item-card script-roblox">
-                <span class="tag tag-script">SCRIPT ROBLOX</span>
-                <h3>AIMBOT + ESP UNDERGROUND STYLE 🟢</h3>
-                <div class="status-info status-working">🟢 WORKING</div>
-                <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
+            <!-- Menu Kategori Filter -->
+            <div class="filter-menu">
+                <button class="filter-btn active" onclick="filterKategori('all', this)">Semua</button>
+                <button class="filter-btn" onclick="filterKategori('script-roblox', this)">Script Roblox</button>
+                <button class="filter-btn" onclick="filterKategori('executor', this)">Executor Mobile</button>
+                <button class="filter-btn" onclick="filterKategori('exec-win', this)">Executor Windows</button>
             </div>
 
-            <!-- Item 4: Codex Executor Mobile -->
-            <div class="item-card executor">
-                <span class="tag tag-exec">EXECUTOR MOBILE</span>
-                <h3>Codex Executor V2 🔴</h3>
-                <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
-                <button class="action-btn" onclick="window.open('https://codex.lol', '_blank')">Unduh Executor</button>
-            </div>
+            <!-- Wadah Daftar Data -->
+            <div class="content-list">
+                
+                <!-- Item 1: Blox Fruit -->
+                <div class="item-card script-roblox">
+                    <span class="tag tag-script">SCRIPT ROBLOX</span>
+                    <h3>BLOX FRUIT 🟣</h3>
+                    <div class="status-info status-unknown">🟣 NOT WORKING AND UNKNOWN PROBLEM</div>
+                    <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://githubusercontent.com\'))()')">Salin Script</button>
+                </div>
+                
+                <!-- Item 2: Aimbot + ESP -->
+                <div class="item-card script-roblox">
+                    <span class="tag tag-script">SCRIPT ROBLOX</span>
+                    <h3>AIMBOT + ESP 🟡</h3>
+                    <div class="status-info status-bug">🟡 WORKING BUT HAVE A BUG</div>
+                    <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
+                </div>
+                
+                <!-- Item 3: Aimbot + ESP Underground Style -->
+                <div class="item-card script-roblox">
+                    <span class="tag tag-script">SCRIPT ROBLOX</span>
+                    <h3>AIMBOT + ESP UNDERGROUND STYLE 🟢</h3>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
+                </div>
 
-            <!-- Item 5: Delta Executor Mobile -->
-            <div class="item-card executor">
-                <span class="tag tag-exec">EXECUTOR MOBILE</span>
-                <h3>Delta Executor Mobile</h3>
-                <div class="status-info status-working">🟢 WORKING</div>
-                <button class="action-btn" onclick="window.open('https://deltaexploits.gg', '_blank')">Unduh Executor</button>
-            </div>
+                <!-- Item 4: Codex Executor Mobile -->
+                <div class="item-card executor">
+                    <span class="tag tag-exec">EXECUTOR MOBILE</span>
+                    <h3>Codex Executor V2 🔴</h3>
+                    <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
+                    <button class="action-btn" onclick="window.open('https://codex.lol', '_blank')">Unduh Executor</button>
+                </div>
 
-            <!-- Item 6: Vega X Mobile -->
-            <div class="item-card executor">
-                <span class="tag tag-exec">EXECUTOR MOBILE</span>
-                <h3>Vega X Mobile</h3>
-                <div class="status-info status-working">🟢 WORKING</div>
-                <button class="action-btn" onclick="window.open('https://vegax.gg', '_blank')">Unduh Executor</button>
-            </div>
+                <!-- Item 5: Delta Executor Mobile -->
+                <div class="item-card executor">
+                    <span class="tag tag-exec">EXECUTOR MOBILE</span>
+                    <h3>Delta Executor Mobile</h3>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <button class="action-btn" onclick="window.open('https://deltaexploits.gg', '_blank')">Unduh Executor</button>
+                </div>
 
-            <!-- Item 7: Wave Executor Windows -->
-            <div class="item-card exec-win">
-                <span class="tag tag-win">EXECUTOR WINDOWS</span>
-                <h3>Wave Executor Windows</h3>
-                <div class="status-info status-working">🟢 WORKING</div>
-                <div class="price-info">💰 Harga: $5.99 USD / 7 Days | $18.99 USD / 30 Days</div>
-                <button class="action-btn" onclick="window.open('https://getwave.gg', '_blank')">Unduh Wave (Official Site)</button>
-                <button class="action-btn btn-buy" onclick="window.open('https://bloxproducts.com', '_blank')">🛒 Beli Premium Key (BloxProducts)</button>
+                <!-- Item 6: Vega X Mobile -->
+                <div class="item-card executor">
+                    <span class="tag tag-exec">EXECUTOR MOBILE</span>
+                    <h3>Vega X Mobile</h3>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <button class="action-btn" onclick="window.open('https://vegax.gg', '_blank')">Unduh Executor</button>
+                </div>
+
+                <!-- Item 7: Wave Executor Windows -->
+                <div class="item-card exec-win">
+                    <span class="tag tag-win">EXECUTOR WINDOWS</span>
+                    <h3>Wave Executor Windows</h3>
+                    <div class="status-info status-working">🟢 WORKING</div>
+                    <div class="price-info">💰 Harga: $5.99 USD / 7 Days | $18.99 USD / 30 Days</div>
+                    <button class="action-btn" onclick="window.open('https://getwave.gg', '_blank')">Unduh Wave (Official Site)</button>
+                    <button class="action-btn btn-buy" onclick="window.open('https://bloxproducts.com', '_blank')">🛒 Beli Premium Key (BloxProducts)</button>
+                </div>
+                
             </div>
-            
         </div>
     </div>
 
