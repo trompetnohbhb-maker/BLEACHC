@@ -13,30 +13,41 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #030307;
+            background-color: #000000;
             color: #ffffff;
         }
 
-        /* 🌌 KANVAS UNTUK ANIMASI PARTIKEL DNA BERGERAK */
-        #dnaCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-        }
-
-        /* Lapisan Gradasi Warna Gelap (Hitam - Merah - Biru) */
-        .color-overlay {
+        /* 🎥 TEMPAT VIDEO YOUTUBE LIVE WALLPAPER */
+        .video-background-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 15% 20%, rgba(255, 0, 0, 0.12) 0%, transparent 45%),
-                        radial-gradient(circle at 85% 80%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
-                        rgba(5, 5, 10, 0.5);
+            z-index: -2;
+            pointer-events: none; /* Mencegah user mengklik video YT */
+            overflow: hidden;
+        }
+        /* Memaksa video melebar penuh dan menutup layar laptop */
+        .video-background-container iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw; /* Rasio 16:9 */
+            min-height: 100vh;
+            min-width: 177.77vh; /* Rasio 16:9 */
+            transform: translate(-50%, -50%);
+        }
+
+        /* Lapisan Gelap Tipis Di Atas Video YouTube Biar Tulisan Menu Tetap Jelas */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Kegelapan diatur 50% biar video tetap kelihatan jelas */
             z-index: -1;
         }
 
@@ -51,48 +62,87 @@
             padding: 15px;
         }
 
-        /* 🔮 UI GLASSMORPHISM TRANSPARAN PREMIUM (Efek Kaca) */
+        /* 🔮 LAYAR PEMICU AWAL AGAR VIDEO MAU BERPUTAR DI CHROME LAPTOP */
+        #startScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0d0d0d;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+        #startScreen h2 {
+            color: #ff4500;
+            font-size: 2.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+        }
+        .start-btn {
+            padding: 14px 32px;
+            background: #ff4500;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
+            transition: 0.3s;
+        }
+        .start-btn:hover {
+            transform: scale(1.05);
+            background: #ff6347;
+        }
+
+        /* 🔮 KOTAK MENU SCRIPT HUB 100% BENING TRANSPARAN (GLASSMORPHISM) */
         .container {
             max-width: 600px;
             width: 100%;
             max-height: 85vh;
             padding: 25px;
-            background: rgba(10, 10, 20, 0.6); /* Efek Kaca Transparan */
-            backdrop-filter: blur(16px); /* Membuat DNA di balik kotak menjadi blur */
-            -webkit-backdrop-filter: blur(16px);
+            /* DIUBAH MENJADI BENING TRANSPARAN (Hanya kaca tipis) */
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(8px); /* Membuat video anime di balik kotak terlihat nge-blur estetik */
+            -webkit-backdrop-filter: blur(8px);
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 
-                        0 0 25px rgba(255, 69, 0, 0.15),
-                        0 0 25px rgba(0, 102, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 69, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Garis tepi kilau kaca tipis */
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
         }
 
         h1 {
-            background: linear-gradient(45deg, #ff4500, #0066ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 2.4rem;
+            color: #ff4500;
+            font-size: 2.2rem;
             margin: 0 0 5px 0;
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: 900;
-            filter: drop-shadow(0 0 8px rgba(255, 69, 0, 0.3));
+            text-shadow: 0 0 12px rgba(255, 69, 0, 0.5);
         }
         .subtitle {
             font-size: 0.9rem;
-            color: #b3b3b3;
+            color: #e2e8f0;
             margin-bottom: 20px;
         }
         
-        /* Search Bar */
+        /* Search Bar Transparan */
         .search-box {
             width: 100%;
             padding: 12px 16px;
             background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             color: white;
             font-size: 0.95rem;
@@ -103,7 +153,7 @@
         }
         .search-box:focus {
             border-color: #ff4500;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.2);
+            background: rgba(0, 0, 0, 0.8);
         }
 
         /* Menu Filter Kategori */
@@ -115,9 +165,9 @@
             margin-bottom: 20px;
         }
         .filter-btn {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(0, 0, 0, 0.4);
             color: #cccccc;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
@@ -126,13 +176,13 @@
             transition: 0.2s;
         }
         .filter-btn.active, .filter-btn:hover {
-            background: linear-gradient(45deg, #ff4500, #0066ff);
+            background: #ff4500;
             color: white;
-            border-color: transparent;
-            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+            border-color: #ff4500;
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.4);
         }
 
-        /* Daftar Script Scrollable */
+        /* Daftar Script Scrollable di dalam kotak menu */
         .content-list {
             flex: 1;
             overflow-y: auto;
@@ -143,17 +193,17 @@
             width: 5px;
         }
         .content-list::-webkit-scrollbar-thumb {
-            background: rgba(0, 102, 255, 0.4);
+            background: rgba(255, 69, 0, 0.5);
             border-radius: 10px;
         }
 
-        /* Kartu Item */
+        /* Kartu Item Transparan Senada */
         .item-card {
-            background: rgba(5, 5, 10, 0.65);
+            background: rgba(0, 0, 0, 0.5); /* Kartu dalam dibuat hitam semi-transparan biar teksnya kontras */
             margin-bottom: 12px;
             padding: 15px;
             border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-left: 4px solid #fff;
             box-sizing: border-box;
         }
@@ -175,9 +225,9 @@
             margin-bottom: 8px;
             text-transform: uppercase;
         }
-        .tag-script { background: rgba(255, 69, 0, 0.12); color: #ff4500; }
-        .tag-exec { background: rgba(6, 182, 212, 0.12); color: #06b6d4; }
-        .tag-win { background: rgba(99, 102, 241, 0.12); color: #818cf8; }
+        .tag-script { background: rgba(255, 69, 0, 0.15); color: #ff4500; }
+        .tag-exec { background: rgba(6, 182, 212, 0.15); color: #06b6d4; }
+        .tag-win { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
 
         .status-info {
             font-size: 0.75rem;
@@ -200,9 +250,9 @@
 
         /* Tombol */
         .action-btn {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.07);
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 10px;
             font-size: 0.8rem;
             border-radius: 8px;
@@ -218,22 +268,33 @@
             color: #000000;
         }
         .btn-buy {
-            background: rgba(21, 128, 61, 0.6);
-            border-color: rgba(34, 197, 94, 0.2);
+            background: rgba(21, 128, 61, 0.7);
+            border-color: rgba(34, 197, 94, 0.3);
         }
         .btn-buy:hover {
             background: #22c55e;
             color: white;
         }
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
 
-    <!-- 🌌 KANVAS LIVE ANIMASI DNA NEON -->
-    <canvas id="dnaCanvas"></canvas>
-    <div class="color-overlay"></div>
+    <!-- 🚪 LAYAR PEMICU AWAL (Klik Masuk Biar Video Mau Putar Otomatis) -->
+    <div id="startScreen" onclick="startWebsite()">
+        <h2>EXPLOIT TOOLS</h2>
+        <button class="start-btn">CLICK TO ENTER SCRIPT HUB</button>
+    </div>
 
-    <!-- Area Tengah Konten -->
+    <!-- 🎥 WADAH BACKGROUND VIDEO YOUTUBE MATA MERAH -->
+    <div class="video-background-container">
+        <div id="player"></div>
+    </div>
+    <div class="video-overlay"></div>
+
+    <!-- Area Konten Tengah Layar -->
     <div class="wrapper">
         <div class="container">
             <h1>EXPLOIT TOOLS</h1>
@@ -248,6 +309,7 @@
                 <button class="filter-btn" onclick="filterKategori('exec-win', this)">Executor Windows</button>
             </div>
 
+            <!-- Daftar Item Script & Executor -->
             <div class="content-list">
                 <!-- Item 1: Blox Fruit -->
                 <div class="item-card script-roblox">
@@ -310,106 +372,39 @@
         </div>
     </div>
 
-    <!-- 🧬 JAVASCRIPT ENGINE UNTUK MERANCANG ANIMASI DNA BERPUTAR 3D -->
+    <!-- 🛠️ SKRIP INTEGRASI YOUTUBE IFRAME API REVISI -->
+    <script src="https://youtube.com"></script>
     <script>
-        const canvas = document.getElementById('dnaCanvas');
-        const ctx = canvas.getContext('2d');
+        let player;
+        let youtubeVideoId = 'B6ZrAaGpsNI'; // ID Video YouTube Mata Merah pilihanmu
 
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
-
-        // Pengaturan Titik Untaian DNA (Merah dan Biru)
-        const numNodes = 45;
-        const speed = 0.015;
-        let rotation = 0;
-
-        function drawDNA() {
-            ctx.clearRect(0, 0, width, height);
-            rotation += speed;
-
-            const startX = width * 0.15; // Posisi helix kiri di laptop
-            const startX2 = width * 0.85; // Posisi helix kanan di laptop
-            const spacingY = height / numNodes;
-
-            for (let i = 0; i < numNodes; i++) {
-                const currentY = i * spacingY;
-                
-                // Menghitung putaran gelombang sin/cos 3D
-                const angle = rotation + (i * 0.25);
-                const sinValue = Math.sin(angle);
-                const cosValue = Math.cos(angle);
-
-                // Ukuran partikel berdasarkan kedalaman semu 3D
-                const size = (cosValue + 1.2) * 2.5;
-
-                // --- HELIX SISI KIRI LAPTOP ---
-                const x1_left = startX + (sinValue * 45);
-                const x2_left = startX - (sinValue * 45);
-
-                // Garis Penghubung Untaian DNA Kiri
-                ctx.beginPath();
-                ctx.moveTo(x1_left, currentY);
-                ctx.lineTo(x2_left, currentY);
-                ctx.strokeStyle = `rgba(100, 100, 150, ${Math.abs(cosValue) * 0.15})`;
-                ctx.lineWidth = 1;
-                ctx.stroke();
-
-                // Bola Node Merah (Untaian A)
-                ctx.beginPath();
-                ctx.arc(x1_left, currentY, size, 0, Math.PI * 2);
-                ctx.fillStyle = cosValue > 0 ? '#ff3333' : '#990000'; // Efek bayangan gelap terang
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = '#ff3333';
-                ctx.fill();
-
-                // Bola Node Biru (Untaian B)
-                ctx.beginPath();
-                ctx.arc(x2_left, currentY, size, 0, Math.PI * 2);
-                ctx.fillStyle = cosValue > 0 ? '#0066ff' : '#0033aa';
-                ctx.shadowColor = '#0066ff';
-                ctx.fill();
-
-
-                // --- HELIX SISI KANAN LAPTOP ---
-                const x1_right = startX2 + (sinValue * 45);
-                const x2_right = startX2 - (sinValue * 45);
-
-                // Garis Penghubung Untaian DNA Kanan
-                ctx.beginPath();
-                ctx.moveTo(x1_right, currentY);
-                ctx.lineTo(x2_right, currentY);
-                ctx.strokeStyle = `rgba(100, 100, 150, ${Math.abs(cosValue) * 0.15})`;
-                ctx.stroke();
-
-                // Bola Node Merah Kanan
-                ctx.beginPath();
-                ctx.arc(x1_right, currentY, size, 0, Math.PI * 2);
-                ctx.fillStyle = cosValue > 0 ? '#ff3333' : '#990000';
-                ctx.shadowColor = '#ff3333';
-                ctx.fill();
-
-                // Bola Node Biru Kanan
-                ctx.beginPath();
-                ctx.arc(x2_right, currentY, size, 0, Math.PI * 2);
-                ctx.fillStyle = cosValue > 0 ? '#0066ff' : '#0033aa';
-                ctx.shadowColor = '#0066ff';
-                ctx.fill();
-                
-                // Reset efek shadow biar gak nge-lag
-                ctx.shadowBlur = 0;
-            }
-
-            requestAnimationFrame(drawDNA);
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                videoId: youtubeVideoId,
+                playerVars: {
+                    'autoplay': 0, // Dimulai dari 0 agar aman dari blokir awal Chrome
+                    'controls': 0,
+                    'showinfo': 0,
+                    'rel': 0,
+                    'loop': 1,
+                    'playlist': youtubeVideoId,
+                    'mute': 1, // Di-mute wajib agar autoplay disetujui browser
+                    'iv_load_policy': 3,
+                    'cc_load_policy': 0,
+                    'modestbranding': 1
+                }
+            });
         }
 
-        drawDNA();
+        // 🔥 FUNGSI PEMICU UTAMA: Berjalan ketika tombol awal ditekan di Laptop
+        function startWebsite() {
+            document.getElementById("startScreen").classList.add("hidden");
+            
+            if (player && typeof player.playVideo === 'function') {
+                player.playVideo();
+            }
+        }
 
-        /* Fungsi Fitur Pencarian */
         function filterSearch() {
             let input = document.getElementById('searchBar').value.toLowerCase();
             let cards = document.getElementsByClassName('item-card');
@@ -420,7 +415,6 @@
             }
         }
 
-        /* Fungsi Filter Kategori */
         function filterKategori(kategori, btn) {
             let buttons = document.getElementsByClassName('filter-btn');
             for (let b of buttons) b.classList.remove('active');
@@ -435,7 +429,6 @@
             }
         }
 
-        /* Fungsi Salin Clipboard */
         function copyText(text) {
             var tempInput = document.createElement("input");
             tempInput.value = text;
