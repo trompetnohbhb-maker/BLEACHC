@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Exploit Tools - Script Hub</title>
     <style>
-        /* Mengunci background agar tidak ikut ketarik saat scroll di HP */
+        /* Mengunci layar agar tidak bergeser */
         html, body {
             margin: 0;
             padding: 0;
@@ -13,36 +13,42 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #080810;
+            background-color: #000000;
             color: #ffffff;
         }
 
-        /* 🌌 LIVE BACKGROUND ANIMASI CSS (Bebas Eror Blokir Link) */
-        .animated-bg {
+        /* 🎥 TEMPAT VIDEO YOUTUBE LIVE WALLPAPER */
+        .video-background-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #1a0f2e, #05030a);
+            z-index: -2;
+            pointer-events: none; /* Mencegah user mengklik video YT */
             overflow: hidden;
         }
-        .animated-bg::before {
-            content: '';
+        /* Memaksa video melebar penuh dan menutup layar laptop */
+        .video-background-container iframe {
             position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255, 69, 0, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 75% 65%, rgba(99, 102, 241, 0.2) 0%, transparent 45%);
-            animation: glower 12s infinite alternate ease-in-out;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw; /* Rasio 16:9 */
+            min-height: 100vh;
+            min-width: 177.77vh; /* Rasio 16:9 */
+            transform: translate(-50%, -50%);
         }
-        @keyframes glower {
-            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            100% { transform: translate(4%, 5%) rotate(10deg) scale(1.1); }
+
+        /* Lapisan Gelap Di Atas Video YouTube Biar Tulisan Menu Jelas */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65); /* Menggelapkan background video */
+            z-index: -1;
         }
 
         /* Pembungkus Konten Tengah */
@@ -56,18 +62,18 @@
             padding: 15px;
         }
 
-        /* 🔮 UI GLASSMORPHISM TRANSPARAN PREMIUM (Efek Kaca Asli) */
+        /* 🔮 UI GLASSMORPHISM TRANSPARAN (Efek Kaca Asli Tembus Pandang) */
         .container {
             max-width: 600px;
             width: 100%;
-            max-height: 90vh; /* Agar pas di layar HP tanpa memotong menu */
+            max-height: 90vh;
             padding: 25px;
-            background: rgba(15, 15, 25, 0.55); /* Transparan */
-            backdrop-filter: blur(15px); /* Efek Blur Latar Belakang */
+            background: rgba(15, 15, 25, 0.5); /* Tembus pandang */
+            backdrop-filter: blur(15px); /* Membuat video di balik kotak menjadi blur */
             -webkit-backdrop-filter: blur(15px);
             border-radius: 24px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 69, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.12); /* Garis kilau kaca */
+            border: 1px solid rgba(255, 255, 255, 0.1);
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -88,11 +94,11 @@
             margin-bottom: 20px;
         }
         
-        /* Search Bar Transparan */
+        /* Search Bar */
         .search-box {
             width: 100%;
             padding: 12px 16px;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             color: white;
@@ -104,7 +110,7 @@
         }
         .search-box:focus {
             border-color: #ff4500;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
         }
 
         /* Menu Filter Kategori */
@@ -133,13 +139,12 @@
             box-shadow: 0 0 10px rgba(255, 69, 0, 0.4);
         }
 
-        /* 📜 DAFTAR SCRIPT YANG BISA DIGERAKKAN / SCROLL DI HP */
+        /* Daftar Script Scrollable */
         .content-list {
             flex: 1;
             overflow-y: auto;
             text-align: left;
             padding-right: 5px;
-            -webkit-overflow-scrolling: touch; /* Biar scroll di HP lancar */
         }
         .content-list::-webkit-scrollbar {
             width: 5px;
@@ -151,11 +156,10 @@
 
         /* Kartu Item */
         .item-card {
-            background: rgba(0, 0, 0, 0.45);
+            background: rgba(0, 0, 0, 0.55);
             margin-bottom: 12px;
             padding: 15px;
             border-radius: 14px;
-            border-left: 4px solid #fff;
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-left: 4px solid #fff;
             box-sizing: border-box;
@@ -232,8 +236,11 @@
 </head>
 <body>
 
-    <!-- 🌌 Wadah Animasi Background Gerak -->
-    <div class="animated-bg"></div>
+    <!-- 🎥 WADAH BACKGROUND YOUTUBE MATA MERAH -->
+    <div class="video-background-container">
+        <div id="player"></div>
+    </div>
+    <div class="video-overlay"></div>
 
     <!-- Area Tengah Konten -->
     <div class="wrapper">
@@ -250,9 +257,8 @@
                 <button class="filter-btn" onclick="filterKategori('exec-win', this)">Executor Windows</button>
             </div>
 
-            <!-- Bagian ini khusus yang bisa di-scroll naik turun di HP -->
             <div class="content-list">
-                
+                <!-- Item 1: Blox Fruit -->
                 <div class="item-card script-roblox">
                     <span class="tag tag-script">SCRIPT ROBLOX</span>
                     <h3>BLOX FRUIT 🟣</h3>
@@ -260,6 +266,7 @@
                     <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://githubusercontent.com\'))()')">Salin Script</button>
                 </div>
                 
+                <!-- Item 2: Aimbot + ESP -->
                 <div class="item-card script-roblox">
                     <span class="tag tag-script">SCRIPT ROBLOX</span>
                     <h3>AIMBOT + ESP 🟡</h3>
@@ -267,6 +274,7 @@
                     <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
                 </div>
                 
+                <!-- Item 3: Aimbot + ESP Underground Style -->
                 <div class="item-card script-roblox">
                     <span class="tag tag-script">SCRIPT ROBLOX</span>
                     <h3>AIMBOT + ESP UNDERGROUND STYLE 🟢</h3>
@@ -274,6 +282,7 @@
                     <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com\'))()')">Salin Script</button>
                 </div>
 
+                <!-- Item 4: Codex Executor Mobile -->
                 <div class="item-card executor">
                     <span class="tag tag-exec">EXECUTOR MOBILE</span>
                     <h3>Codex Executor V2 🔴</h3>
@@ -281,6 +290,7 @@
                     <button class="action-btn" onclick="window.open('https://codex.lol', '_blank')">Unduh Executor</button>
                 </div>
 
+                <!-- Item 5: Delta Executor Mobile -->
                 <div class="item-card executor">
                     <span class="tag tag-exec">EXECUTOR MOBILE</span>
                     <h3>Delta Executor Mobile</h3>
@@ -288,6 +298,7 @@
                     <button class="action-btn" onclick="window.open('https://deltaexploits.gg', '_blank')">Unduh Executor</button>
                 </div>
 
+                <!-- Item 6: Vega X Mobile -->
                 <div class="item-card executor">
                     <span class="tag tag-exec">EXECUTOR MOBILE</span>
                     <h3>Vega X Mobile</h3>
@@ -295,6 +306,7 @@
                     <button class="action-btn" onclick="window.open('https://vegax.gg', '_blank')">Unduh Executor</button>
                 </div>
 
+                <!-- Item 7: Wave Executor Windows -->
                 <div class="item-card exec-win">
                     <span class="tag tag-win">EXECUTOR WINDOWS</span>
                     <h3>Wave Executor Windows</h3>
@@ -303,22 +315,55 @@
                     <button class="action-btn" onclick="window.open('https://getwave.gg', '_blank')">Unduh Wave (Official Site)</button>
                     <button class="action-btn btn-buy" onclick="window.open('https://bloxproducts.com', '_blank')">🛒 Beli Premium Key (BloxProducts)</button>
                 </div>
-                
             </div>
         </div>
     </div>
 
+    <!-- 🛠️ SKRIP INTEGRASI YOUTUBE IFRAME API -->
+    <script src="https://youtube.com"></script>
     <script>
+        let player;
+        
+        // 🟢 ID Video dari link YT yang kamu berikan tadi
+        let youtubeVideoId = 'B6ZrAaGpsNI'; 
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                videoId: youtubeVideoId,
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,      // Sembunyikan tombol pause/play
+                    'showinfo': 0,      // Sembunyikan info judul
+                    'rel': 0,           // Mencegah video rekomendasi lain
+                    'loop': 1,          // Mengulang terus-menerus
+                    'playlist': youtubeVideoId, // Diperlukan agar fungsi loop YT aktif
+                    'mute': 1,          // Wajib di-mute agar otomatis berputar di browser
+                    'iv_load_policy': 3,
+                    'cc_load_policy': 0,
+                    'modestbranding': 1 // Sembunyikan logo YouTube
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        /* Fungsi Fitur Pencarian Real-Time */
         function filterSearch() {
             let input = document.getElementById('searchBar').value.toLowerCase();
             let cards = document.getElementsByClassName('item-card');
             for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
+                let title = cards[i].getElementsByTagName('h3').textContent.toLowerCase();
                 if (title.includes(input)) { cards[i].style.display = ""; } 
                 else { cards[i].style.display = "none"; }
             }
         }
 
+        /* Fungsi Filter Kategori */
         function filterKategori(kategori, btn) {
             let buttons = document.getElementsByClassName('filter-btn');
             for (let b of buttons) b.classList.remove('active');
@@ -333,6 +378,7 @@
             }
         }
 
+        /* Fungsi Salin Clipboard */
         function copyText(text) {
             var tempInput = document.createElement("input");
             tempInput.value = text;
