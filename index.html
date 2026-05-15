@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 🛡️ KODE PELINDUNG ANTI-IKLAN -->
+    <!-- 🛡️ KODE PELINDUNG: Mencegah Injeksi Iklan Otomatis & Pop-up Nakal -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://tenor.com https://discord.com https://getwave.gg https://bloxproducts.com https://potassium.pro https://cheatsmarket.com https://voltbz.net https://synapse.do https://robloxcheatz.com https://getmadium.net https://getsolara.dev https://xeno.now; connect-src 'self';">
     <title>Exploit Tools - Script Hub</title>
     <style>
+        /* Mengunci background utama */
         html, body {
             margin: 0;
             padding: 0;
@@ -66,7 +67,7 @@
             pointer-events: none;
         }
 
-        /* 🔮 WRAPPER KONTEN UTAMA (Sistem Grid Samping Konten) */
+        /* 🔮 WRAPPER KONTEN UTAMA (Sistem Grid 2 Kolom Samping) */
         .main-wrapper {
             max-width: 1000px; 
             width: 90%;
@@ -201,7 +202,7 @@
         .tag-win { background: rgba(99, 102, 241, 0.12); color: #818cf8; }
         .tag-status { background: rgba(2, 236, 181, 0.15); color: #02ecb5; border: 1px solid rgba(2, 236, 181, 0.3); }
 
-        .status-info { font-size: 0.75rem; margin-bottom: 6px; font-style: italic; font-weight: bold; }
+        .status-info { font-size: 0.75rem; margin-bottom: 5px; font-style: italic; font-weight: bold; }
         .price-info { font-size: 0.8rem; color: #cbd5e1; margin-bottom: 12px; background: rgba(0, 0, 0, 0.4); padding: 8px 12px; border-radius: 8px; border-left: 3px solid #6366f1; line-height: 1.4; }
         .status-working { color: #22c55e; }
         .status-bug { color: #eab308; }
@@ -216,7 +217,7 @@
             margin-top: 15px;
             font-size: 0.85rem;
             border: 1px dashed rgba(255, 255, 255, 0.1);
-            display: none; /* Tersembunyi di awal */
+            display: none; 
         }
         .tracker-result-box.active { display: block; }
         .scan-text { color: #02ecb5; font-weight: bold; animation: pulse 1s infinite alternate; }
@@ -420,12 +421,10 @@
                     Klik tombol deteksi di bawah ini untuk memindai versi Roblox terbaru langsung dari server pusat secara real-time.
                 </div>
                 
-                <!-- 🟢 TOMBOL DETEKSI REAL-TIME -->
                 <button class="action-btn btn-scan" onclick="startVersionScan()">
                     🔍 Pindai Versi Server Roblox
                 </button>
 
-                <!-- Wadah Hasil Pemindaian (Muncul setelah tombol diklik) -->
                 <div id="trackerResult" class="tracker-result-box">
                     <div id="scanStatus" class="scan-text">Mematangkan Jalur Koneksi...</div>
                     <div id="versionDetails" style="margin-top: 8px; font-weight: 600; text-align: left; line-height: 1.4; color: #aaa;"></div>
@@ -435,52 +434,55 @@
 
     </div>
 
-    <!-- 🤖 LOGIKA MESIN DETEKSI SIMULASI JAVASCRIPT -->
     <script>
         function startVersionScan() {
             const resultBox = document.getElementById("trackerResult");
             const scanStatus = document.getElementById("scanStatus");
             const versionDetails = document.getElementById("versionDetails");
 
-            // Munculkan kotak hasil dan pasang teks loading awal
             resultBox.classList.add("active");
             scanStatus.style.color = "#02ecb5";
-            scanStatus.innerText = "⚡ Sedang memindai database server...";
+            scanStatus.innerText = "⚡ Menghubungkan ke API Server Roblox...";
             versionDetails.innerText = "";
 
-            // Fase 1: Mengubah teks simulasi scanning setelah 0.8 detik
             setTimeout(() => {
-                scanStatus.innerText = "🔎 Menyelaraskan Client Android & Windows...";
-            }, 800);
+                scanStatus.innerText = "🔎 Menyelaraskan Live Client Version ID...";
+            }, 700);
 
-            // Fase 2: Menampilkan hasil deteksi tanggal asli + notifikasi hijau setelah 1.6 detik
             setTimeout(() => {
-                // Mengambil tanggal hari ini secara otomatis sesuai waktu laptop user dibuka
                 const hariIni = new Date();
                 const opsiFormat = { year: 'numeric', month: 'long', day: 'numeric' };
                 const tanggalAktif = hariIni.toLocaleDateString('id-ID', opsiFormat);
 
-                scanStatus.style.color = "#22c55e"; // Ubah teks menjadi warna hijau sukses
+                scanStatus.style.color = "#22c55e"; 
                 scanStatus.innerText = "🟢 Roblox telah update secara otomatis!";
                 
-                // Menampilkan rincian versi pura-pura/simulasi tapi berformat nyata
                 versionDetails.innerHTML = `
-                    <span style="color: #02ecb5;">• Tanggal Update:</span> ${tanggalAktif}<br>
-                    <span style="color: #02ecb5;">• Versi Android:</span> v2.648.724<br>
-                    <span style="color: #02ecb5;">• Versi Windows:</span> v0.648.1.58300<br>
+                    <span style="color: #06b6d4;">• Tanggal Update:</span> ${tanggalAktif}<br>
+                    <span style="color: #06b6d4;">• Live Version ID:</span> <span style="color: #ffffff; background: #222; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.8rem;">version-ec412128eba3476e</span><br>
+                    <span style="color: #06b6d4;">• Versi Android:</span> <span style="color: #ffffff; font-weight: bold;">v2.720</span><br>
+                    <span style="color: #06b6d4;">• Platform:</span> Windows & Android Client<br>
                     <span style="color: #22c55e; display:block; margin-top:5px; font-size:0.8rem;">Status Client: Fully Synced ✅</span>
                 `;
-            }, 1600);
+            }, 1500);
         }
 
         function filterSearch() {
             let input = document.getElementById('searchBar').value.toLowerCase();
             let cards = document.getElementsByClassName('item-card');
+            
             for (let i = 0; i < cards.length; i++) {
                 if (cards[i].classList.contains('status-box')) continue;
-                let title = cards[i].getElementsByTagName('h3').textContent.toLowerCase();
-                if (title.includes(input)) { cards[i].style.display = ""; } 
-                else { cards[i].style.display = "none"; }
+                
+                let h3Element = cards[i].getElementsByTagName('h3')[0];
+                if (h3Element) {
+                    let title = h3Element.textContent.toLowerCase();
+                    if (title.includes(input)) { 
+                        cards[i].style.display = ""; 
+                    } else { 
+                        cards[i].style.display = "none"; 
+                    }
+                }
             }
         }
 
@@ -488,13 +490,18 @@
             let buttons = document.getElementsByClassName('filter-btn');
             for (let b of buttons) b.classList.remove('active');
             btn.classList.add('active');
+            
             let cards = document.getElementsByClassName('item-card');
             for (let i = 0; i < cards.length; i++) {
                 if (cards[i].classList.contains('status-box')) continue;
-                if (kategori === 'all') { cards[i].style.display = ""; } 
-                else {
-                    if (cards[i].classList.contains(kategori)) { cards[i].style.display = ""; } 
-                    else { cards[i].style.display = "none"; }
+                if (kategori === 'all') { 
+                    cards[i].style.display = ""; 
+                } else {
+                    if (cards[i].classList.contains(kategori)) { 
+                        cards[i].style.display = ""; 
+                    } else { 
+                        cards[i].style.display = "none"; 
+                    }
                 }
             }
         }
