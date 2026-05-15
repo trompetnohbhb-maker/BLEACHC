@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bleach Zone - Script Hub</title>
     <style>
-        /* Gaya Tampilan Modern & Gelap */
+        /* Gaya Tampilan Dasar & Gelap */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #121212;
@@ -19,7 +19,7 @@
             text-align: center;
         }
         .container {
-            max-width: 600px;
+            max-width: 650px;
             width: 90%;
             padding: 30px;
             background: #1e1e1e;
@@ -39,163 +39,273 @@
             color: #cccccc;
             line-height: 1.6;
         }
-        /* Style Tombol Dropdown */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            margin-top: 20px;
-        }
         .btn {
             display: inline-block;
             padding: 12px 24px;
             background-color: #ff4500;
             color: white;
-            text-decoration: none;
             border-radius: 25px;
             font-weight: bold;
             transition: 0.3s ease;
             cursor: pointer;
             border: none;
             font-size: 1rem;
+            margin-top: 20px;
         }
         .btn:hover {
             background-color: #ff6347;
             transform: scale(1.05);
         }
-        /* Isi Menu Pilihan */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #252525;
-            min-width: 320px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.6);
-            border-radius: 10px;
-            padding: 12px;
-            z-index: 1;
-            right: 50%;
-            transform: translateX(50%);
-            margin-top: 10px;
-            border: 1px solid #444;
+
+        /* HALAMAN KEDUA */
+        .hidden {
+            display: none !important;
         }
-        /* Menampilkan menu saat aktif */
-        .dropdown-content.show {
-            display: block;
-        }
-        /* Item di dalam menu */
-        .script-item {
-            background: #1a1a1a;
-            margin: 12px 0;
-            padding: 12px;
-            border-radius: 6px;
-            text-align: left;
-        }
-        .script-item.bloxfruit { border-left: 4px solid #a855f7; }
-        .script-item.aimbot { border-left: 4px solid #eab308; }
-        .script-item.underground { border-left: 4px solid #22c55e; }
         
-        .script-item h4 {
-            margin: 0 0 4px 0;
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            background: #252525;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: white;
             font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            outline: none;
         }
-        /* Style Teks Info Status */
+        .search-box:focus {
+            border-color: #ff4500;
+        }
+
+        .filter-menu {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .filter-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: #ff4500;
+        }
+
+        .content-list {
+            max-height: 350px;
+            overflow-y: auto;
+            text-align: left;
+            padding-right: 5px;
+        }
+        .content-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .content-list::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 3px;
+        }
+
+        .item-card {
+            background: #1a1a1a;
+            margin-bottom: 12px;
+            padding: 14px;
+            border-radius: 8px;
+            border-left: 4px solid #fff;
+        }
+        .item-card.script-roblox { border-left-color: #ff4500; }
+        .item-card.executor { border-left-color: #06b6d4; }
+
+        .item-card h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+        }
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .tag-script { background: #ff4500; color: white; }
+        .tag-exec { background: #06b6d4; color: black; }
+
         .status-info {
             font-size: 0.8rem;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-style: italic;
             font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
         .status-working { color: #22c55e; }
         .status-bug { color: #eab308; }
         .status-unknown { color: #a855f7; }
-        .status-down { color: #ef4444; }
 
-        .copy-btn {
+        .action-btn {
             background: #333;
             color: #fff;
             border: none;
-            padding: 6px 12px;
+            padding: 8px 12px;
             font-size: 0.85rem;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
             width: 100%;
-            margin-top: 5px;
-            transition: 0.2s;
             font-weight: bold;
+            transition: 0.2s;
         }
-        .copy-btn:hover {
-            background: #ff4500;
+        .action-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            text-decoration: underline;
+        }
+        .back-btn:hover {
+            color: #ff4500;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>SCRIPT ZONE</h1>
+    <!-- HALAMAN 1: BERANDA AWAL -->
+    <div id="homePage" class="container">
+        <h1>BLEACH ZONE</h1>
         <p>Selamat datang di pusat koleksi script modifikasi game Roblox terbaik dan gratis.</p>
+        <button onclick="bukaHalamanScript()" class="btn">Jelajahi Script</button>
+    </div>
+
+    <!-- HALAMAN 2: SCRIPT & EXECUTOR -->
+    <div id="scriptPage" class="container hidden">
+        <h1>SCRIPT HUB</h1>
         
-        <!-- Pembungkus Menu Dropdown -->
-        <div class="dropdown">
-            <button onclick="toggleMenu()" class="btn">Jelajahi Script</button>
-            
-            <div id="myDropdown" class="dropdown-content">
-                
-                <!-- Pilihan 1: Blox Fruit -->
-                <div class="script-item bloxfruit">
-                    <h4>BLOX FRUIT 🟣</h4>
-                    <div class="status-info status-unknown">🟣 NOT WORKING AND UNKNOWN PROBLEM</div>
-                    <button class="copy-btn" onclick="copyScript('loadstring(game:HttpGet(\'https://githubusercontent.com/trompetnohbhb-maker/yutahub/refs/heads/main/sonblackyuta\'))()')">Salin Script</button>
-                </div>
-                
-                <!-- Pilihan 2: Aimbot + ESP -->
-                <div class="script-item aimbot">
-                    <h4>AIMBOT + ESP 🟡</h4>
-                    <div class="status-info status-bug">🟡 WORKING BUT HAVE A BUG</div>
-                    <button class="copy-btn" onclick="copyScript('loadstring(game:HttpGet(\'https://pastebin.com/raw/wWJZynia\'))()')">Salin Script</button>
-                </div>
-                
-                <!-- Pilihan 3: Aimbot + ESP Underground Style -->
-                <div class="script-item underground">
-                    <h4>AIMBOT + ESP UNDERGROUND STYLE 🟢</h4>
-                    <div class="status-info status-working">🟢 WORKING</div>
-                    <button class="copy-btn" onclick="copyScript('loadstring(game:HttpGet(\'https://pastebin.com/raw/68qspC8i\'))()')">Salin Script</button>
-                </div>
-                
-            </div>
+        <!-- Input Pencarian -->
+        <input type="text" id="searchBar" class="search-box" placeholder="Cari script atau executor..." onkeyup="filterSearch()">
+        
+        <!-- Menu Kategori -->
+        <div class="filter-menu">
+            <button class="filter-btn active" onclick="filterKategori('all', this)">Semua</button>
+            <button class="filter-btn" onclick="filterKategori('script-roblox', this)">Script Roblox</button>
+            <button class="filter-btn" onclick="filterKategori('executor', this)">Executor</button>
         </div>
+
+        <!-- Wadah List Data -->
+        <div class="content-list">
+            
+            <!-- Item 1: Blox Fruit -->
+            <div class="item-card script-roblox">
+                <span class="tag tag-script">SCRIPT ROBLOX</span>
+                <h3>BLOX FRUIT 🟣</h3>
+                <div class="status-info status-unknown">🟣 NOT WORKING AND UNKNOWN PROBLEM</div>
+                <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/trompetnohbhb-maker/yutahub/refs/heads/main/sonblackyuta\'))()')">Salin Script</button>
+            </div>
+            
+            <!-- Item 2: Aimbot + ESP -->
+            <div class="item-card script-roblox">
+                <span class="tag tag-script">SCRIPT ROBLOX</span>
+                <h3>AIMBOT + ESP 🟡</h3>
+                <div class="status-info status-bug">🟡 WORKING BUT HAVE A BUG</div>
+                <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com/raw/wWJZynia\'))()')">Salin Script</button>
+            </div>
+            
+            <!-- Item 3: Aimbot + ESP Underground Style -->
+            <div class="item-card script-roblox">
+                <span class="tag tag-script">SCRIPT ROBLOX</span>
+                <h3>AIMBOT + ESP UNDERGROUND STYLE 🟢</h3>
+                <div class="status-info status-working">🟢 WORKING</div>
+                <button class="action-btn" onclick="copyText('loadstring(game:HttpGet(\'https://pastebin.com/raw/68qspC8i\'))()')">Salin Script</button>
+            </div>
+
+            <!-- Item 4: Executor 1 -->
+            <div class="item-card executor">
+                <span class="tag tag-exec">EXECUTOR</span>
+                <h3>Codex Executor V2</h3>
+                <div class="status-info status-working">🟢 WORKING (LATEST UPDATE)</div>
+                <button class="action-btn" onclick="window.open('https://codex.lol', '_blank')">Unduh Executor</button>
+            </div>
+
+            <!-- Item 5: Executor 2 -->
+            <div class="item-card executor">
+                <span class="tag tag-exec">EXECUTOR</span>
+                <h3>Delta Executor Mobile</h3>
+                <div class="status-info status-working">🟢 WORKING</div>
+                <button class="action-btn" onclick="window.open('https://deltaexecutors.com', '_blank')">Unduh Executor</button>
+            </div>
+            
+        </div>
+
+        <button class="back-btn" onclick="kembaliKeHome()">← Kembali ke Beranda</button>
     </div>
 
     <script>
-        /* Fungsi untuk Membuka dan Menutup Menu */
-        function toggleMenu() {
-            document.getElementById("myDropdown").classList.toggle("show");
+        function bukaHalamanScript() {
+            document.getElementById("homePage").classList.add("hidden");
+            document.getElementById("scriptPage").classList.remove("hidden");
         }
 
-        /* Fungsi Otomatis untuk Salin Teks Script */
-        function copyScript(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Script berhasil disalin!");
-            }).catch(err => {
-                alert("Gagal menyalin, silakan salin manual.");
-            });
+        function kembaliKeHome() {
+            document.getElementById("scriptPage").classList.add("hidden");
+            document.getElementById("homePage").classList.remove("hidden");
         }
 
-        /* Menutup menu jika user klik di luar area menu */
-        window.onclick = function(event) {
-            if (!event.target.matches('.btn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
+        /* Fungsi Fitur Pencarian Real-Time */
+        function filterSearch() {
+            let input = document.getElementById('searchBar').value.toLowerCase();
+            let cards = document.getElementsByClassName('item-card');
+            
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
+                if (title.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        /* Fungsi Filter Kategori */
+        function filterKategori(kategori, btn) {
+            let buttons = document.getElementsByClassName('filter-btn');
+            for (let b of buttons) b.classList.remove('active');
+            btn.classList.add('active');
+
+            let cards = document.getElementsByClassName('item-card');
+            for (let i = 0; i < cards.length; i++) {
+                if (kategori === 'all') {
+                    cards[i].style.display = "";
+                } else {
+                    if (cards[i].classList.contains(kategori)) {
+                        cards[i].style.display = "";
+                    } else {
+                        cards[i].style.display = "none";
                     }
                 }
             }
+        }
+
+        /* Fungsi Salin Clipboard Aman */
+        function copyText(text) {
+            var tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Script berhasil disalin!");
         }
     </script>
 
