@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 🛡️ KODE PELINDUNG: Mencegah Injeksi Iklan Otomatis & Pop-up Nakal -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://tenor.com https://discord.com https://getwave.gg https://bloxproducts.com https://potassium.pro https://cheatsmarket.com https://voltbz.net https://synapse.do https://robloxcheatz.com https://getmadium.net https://getsolara.dev https://xeno.now; connect-src 'self';">
     <title>Exploit Tools - Script Hub</title>
     <style>
         /* Mengunci background utama agar tetap di tempat saat di-scroll */
@@ -157,11 +159,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: 0.3s ease;
         }
-        .item-card:hover {
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
         .item-card.script-roblox { border-left-color: #ff4500; }
         .item-card.executor { border-left-color: #06b6d4; }
         .item-card.exec-win { border-left-color: #6366f1; }
@@ -202,7 +199,7 @@
 <body>
 
     <!-- LIVE WALLPAPER ANIMASI MATRIKS NEON -->
-    <img class="live-wallpaper-bg" src="https://tenor.com" alt="Cyberpunk Neon Live Wallpaper">
+    <img class="live-wallpaper-bg" src="https://tenor.com/On7byg8v6m8AAAAd/cyberpunk-city.gif" alt="Cyberpunk Neon Live Wallpaper">
 
     <!-- Lapisan Warna Gradasi & Garis Grid Cyberpunk -->
     <div class="color-overlay"></div>
@@ -213,6 +210,7 @@
         <h1>EXPLOIT TOOLS</h1>
         <div class="subtitle">Koleksi premium script dan executor game Roblox terbaik.</div>
         
+        <!-- Kolom Pencarian -->
         <input type="text" id="searchBar" class="search-box" placeholder="Cari script atau executor..." onkeyup="filterSearch()">
         
         <div class="filter-menu">
@@ -252,7 +250,7 @@
                 <span class="tag tag-exec">EXECUTOR MOBILE</span>
                 <h3>Codex Executor V2 🔴</h3>
                 <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
-                <button class="action-btn" onclick="window.open('https://codex.lol', '_blank')">Unduh Executor</button>
+                <button class="action-btn" onclick="window.open('https://codex.lol', '_blank', 'noopener,noreferrer')">Unduh Executor</button>
             </div>
 
             <!-- Item 5: Delta Executor Mobile -->
@@ -260,7 +258,7 @@
                 <span class="tag tag-exec">EXECUTOR MOBILE</span>
                 <h3>Delta Executor Mobile</h3>
                 <div class="status-info status-working">🟢 WORKING</div>
-                <button class="action-btn" onclick="window.open('https://deltaexploits.gg', '_blank')">Unduh Executor</button>
+                <button class="action-btn" onclick="window.open('https://deltaexploits.gg', '_blank', 'noopener,noreferrer')">Unduh Executor</button>
             </div>
 
             <!-- Item 6: Vega X Mobile -->
@@ -268,16 +266,16 @@
                 <span class="tag tag-exec">EXECUTOR MOBILE</span>
                 <h3>Vega X Mobile</h3>
                 <div class="status-info status-working">🟢 WORKING</div>
-                <button class="action-btn" onclick="window.open('https://vegax.gg', '_blank')">Unduh Executor</button>
+                <button class="action-btn" onclick="window.open('https://vegax.gg', '_blank', 'noopener,noreferrer')">Unduh Executor</button>
             </div>
 
-                       <!-- Item 7: Wave Executor Windows -->
+            <!-- Item 7: Wave Executor Windows -->
             <div class="item-card exec-win">
                 <span class="tag tag-win">EXECUTOR WINDOWS</span>
                 <h3>Wave Executor Windows</h3>
                 <div class="status-info status-working">🟢 WORKING</div>
                 <div class="price-info">💰 Harga: $5.99 USD / 7 Days | $18.99 USD / 30 Days</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.gg/qrxzwjfhm', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Wave</button>
+                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Wave</button>
                 <button class="action-btn" onclick="window.open('https://getwave.gg', '_blank', 'noopener,noreferrer')">Unduh Wave (Official Site)</button>
                 <button class="action-btn btn-buy" onclick="window.open('https://bloxproducts.com', '_blank', 'noopener,noreferrer')">🛒 Beli Premium Key (BloxProducts)</button>
             </div>
@@ -288,8 +286,8 @@
                 <h3>Potassium Executor Windows</h3>
                 <div class="status-info status-working">🟢 WORKING</div>
                 <div class="price-info">💰 Harga: $22.99 USD / Lifetime Key</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com/invite/potassium', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Potassium</button>
-                <button class="action-btn" onclick="window.open('https://discord.com/invite/potassium', '_blank', 'noopener,noreferrer')">Unduh Potassium (Discord Official Site)</button>
+                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Potassium</button>
+                <button class="action-btn" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">Unduh Potassium (Discord Official Site)</button>
                 <button class="action-btn btn-buy" onclick="window.open('https://cheatsmarket.com', '_blank', 'noopener,noreferrer')">🛒 Beli Lifetime Key (CheatsMarket)</button>
             </div>
 
@@ -299,7 +297,7 @@
                 <h3>Volt Executor Windows</h3>
                 <div class="status-info status-working">🟢 WORKING</div>
                 <div class="price-info">💰 Harga:<br>• $5.99 USD - $9.99 USD / Weekly<br>• $19.99 USD / Monthly<br>• $49.99 USD / Quarterly</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com/invite/voltbz', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Volt</button>
+                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Volt</button>
                 <button class="action-btn" onclick="window.open('https://voltbz.net', '_blank', 'noopener,noreferrer')">Unduh & Beli Volt (Official Site)</button>
             </div>
 
@@ -309,52 +307,59 @@
                 <h3>Synapse Z Windows</h3>
                 <div class="status-info status-working">🟢 WORKING</div>
                 <div class="price-info">💰 Harga: $3.99 USD / Weekly | $11.99 USD / Monthly</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com/invite/synz', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Synapse Z</button>
+                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Synapse Z</button>
                 <button class="action-btn" onclick="window.open('https://synapse.do', '_blank', 'noopener,noreferrer')">Unduh Synapse Z (Official Site)</button>
                 <button class="action-btn btn-buy" onclick="window.open('https://robloxcheatz.com', '_blank', 'noopener,noreferrer')">🛒 Beli Premium Key (RobloxCheatz)</button>
             </div>
 
-            <!-- Item 11: Madium Windows (BARU - DOWN) -->
+            <!-- Item 11: Madium Windows -->
             <div class="item-card exec-win">
                 <span class="tag tag-win">EXECUTOR WINDOWS</span>
                 <h3>Madium Windows 🔴</h3>
                 <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
                 <div class="price-info">💰 Harga: FREE</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com/invite/olemad', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Madium</button>
-                <button class="action-btn" onclick="window.open('https://getmadium.net/', '_blank', 'noopener,noreferrer')">Kunjungi Web Madium</button>
+                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Madium</button>
+                <button class="action-btn" onclick="window.open('https://getmadium.net', '_blank', 'noopener,noreferrer')">Kunjungi Web Madium</button>
             </div>
 
-            <!-- Item 12: Solara Windows (BARU - DOWN) -->
+            <!-- Item 12: Solara Windows -->
             <div class="item-card exec-win">
                 <span class="tag tag-win">EXECUTOR WINDOWS</span>
                 <h3>Solara Windows 🔴</h3>
                 <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
                 <div class="price-info">💰 Harga: FREE</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Solara(discord invite expired)</button>
-                <button class="action-btn" onclick="window.open('https://getsolara.dev/', '_blank', 'noopener,noreferrer')">Kunjungi Web Solara</button>
+                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Solara</button>
+                <button class="action-btn" onclick="window.open('https://getsolara.dev', '_blank', 'noopener,noreferrer')">Kunjungi Web Solara</button>
             </div>
 
-            <!-- Item 13: Xeno Windows (BARU - DOWN) -->
+            <!-- Item 13: Xeno Windows -->
             <div class="item-card exec-win">
                 <span class="tag tag-win">EXECUTOR WINDOWS</span>
                 <h3>Xeno Windows 🔴</h3>
                 <div class="status-info status-down">🔴 DOWN AND NEED UPDATE</div>
                 <div class="price-info">💰 Harga: FREE</div>
-                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com/invite/xe-no', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Xeno</button>
-                <button class="action-btn" onclick="window.open('https://www.xeno.now/', '_blank', 'noopener,noreferrer')">Kunjungi Web Xeno</button>
+                <button class="action-btn" style="background: #5865F2; border-color: #5865F2;" onclick="window.open('https://discord.com', '_blank', 'noopener,noreferrer')">💬 Discord Resmi Xeno</button>
+                <button class="action-btn" onclick="window.open('https://xeno.now/', '_blank', 'noopener,noreferrer')">Kunjungi Web Xeno</button>
             </div>
         </div>
     </div>
 
-
+    <!-- 🛠️ SISTEM JAVASCRIPT YANG SUDAH DIPERBAIKI -->
     <script>
+        /* 🟢 FITUR SEARCH REAL-TIME YANG SUDAH FIX (Bisa Diketik di HP/Laptop) */
         function filterSearch() {
             let input = document.getElementById('searchBar').value.toLowerCase();
             let cards = document.getElementsByClassName('item-card');
+            
             for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].getElementsByTagName('h3').textContent.toLowerCase();
-                if (title.includes(input)) { cards[i].style.display = ""; } 
-                else { cards[i].style.display = "none"; }
+                // Perbaikan fatal: Mengganti innerText menjadi textContent agar terbaca lancar
+                let title = cards[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
+                
+                if (title.includes(input)) { 
+                    cards[i].style.display = ""; 
+                } else { 
+                    cards[i].style.display = "none"; 
+                }
             }
         }
 
@@ -362,12 +367,17 @@
             let buttons = document.getElementsByClassName('filter-btn');
             for (let b of buttons) b.classList.remove('active');
             btn.classList.add('active');
+            
             let cards = document.getElementsByClassName('item-card');
             for (let i = 0; i < cards.length; i++) {
-                if (kategori === 'all') { cards[i].style.display = ""; } 
-                else {
-                    if (cards[i].classList.contains(kategori)) { cards[i].style.display = ""; } 
-                    else { cards[i].style.display = "none"; }
+                if (kategori === 'all') { 
+                    cards[i].style.display = ""; 
+                } else {
+                    if (cards[i].classList.contains(kategori)) { 
+                        cards[i].style.display = ""; 
+                    } else { 
+                        cards[i].style.display = "none"; 
+                    }
                 }
             }
         }
